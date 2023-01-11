@@ -1,5 +1,5 @@
 # CS320-2023-Spring
-For teaching BU CAS CS525: Compiler Design and Implementation.
+For teaching BU CAS CS320: Concepts of Programming Languages
 
 ## Mirroring this repository
 
