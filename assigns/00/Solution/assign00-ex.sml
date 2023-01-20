@@ -13,6 +13,9 @@ for Assign00.
 use "./../assign00-lib.sml";
 (* ****** ****** *)
 
+(*
+HX-2023-01-20: string-append
+*)
 fun
 strapp
 (xs: string)

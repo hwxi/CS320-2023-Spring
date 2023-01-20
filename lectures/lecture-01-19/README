@@ -1,0 +1,47 @@
+What is covered:
+
+############################################################
+
+Introduction to CS320, Spring, 2023
+
+############################################################
+
+Overview of SML/NJ:
+
+############################################################
+
+Names are not variables.
+A variable has to two attributes:
+address (left-value) and content (right-value)
+
+In C,
+
+x = x + 1 // left 'x' refers to the address
+          // and right 'x' refers to the content
+
+In SML, (x = x + 1) is an expression testing whether
+'x' equals 'x + 1' (and the expression yields 'false')
+
+############################################################
+
+Expressions versus Declarations
+
+A program consists of a sequence of declarations followed by
+an expression.
+
+Bindings between names and values introduced by declarations are
+*final*; they cannot be changed once established.
+
+############################################################
+
+Recursion:
+
+fun
+fact(n: int): int =
+  if n > 0 then n * fact(n-1) else 1
+
+val
+rec (*recursion*)
+fact = fn(n: int) => if n > 0 then n * fact(n-1) else 1
+
+############################################################
