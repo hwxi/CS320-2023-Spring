@@ -12,13 +12,14 @@ before proceeding.
 
 ### assign00-lib.sml
 
-The functions in assign00-lib.sml are the ONLY functions
-that are allowed for Assign00. For instance, the library
-fun String.substring is not mentioned in assign00-lib.sml;
-if you want to use it, then you have to implement it on you
-own. Your solution would not be accepted if you use functions
-not mentioned in assign00-lib.sml without implementing them on
-your own.
+The functions in assign00-lib.sml are the ONLY functions that are
+allowed for Assign00.
+
+For instance, the library function String.substring is not mentioned
+in assign00-lib.sml; if you want to use it, then you have to implement
+it on you own. Your solution would not be accepted if you use
+functions not mentioned in assign00-lib.sml without implementing them
+on your own.
 
 ### Solution
 
@@ -28,7 +29,8 @@ This is a directory for the class.  Some solutions to Assign00 may
 ### Testing
 
 This is a directory for the class.  Some testing code for Assign00 may
-be stored here.
+be stored here. There may or may not be such a directory for the following
+assignments.
 
 ### MySolution
 
