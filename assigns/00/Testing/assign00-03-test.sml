@@ -15,6 +15,10 @@ val () = assert(int2str(100) = "100")
 val () = assert(int2str(1000) = "1000")
 val () = assert(int2str(12345) = "12345")
 
+(* ****** ****** *)
+val () = print("Assign00-03-test passed!\n")
+(* ****** ****** *)
+
 end (* end-of-local *)
 
 (* ****** ****** *)

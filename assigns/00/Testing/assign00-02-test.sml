@@ -19,6 +19,10 @@ if (isPrime(1001) <> false) then raise Error else ()
 val () =
 if (isPrime(10001) <> false) then raise Error else ()
 
+(* ****** ****** *)
+val () = print("Assign00-02-test passed!\n")
+(* ****** ****** *)
+
 end (* end-of-local *)
 
 (* ****** ****** *)

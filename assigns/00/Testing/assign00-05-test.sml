@@ -16,6 +16,10 @@ val () = assert(stringrev("123") = "321")
 val () = assert(stringrev("1234") = "4321")
 val () = assert(stringrev("12345") = "54321")
 
+(* ****** ****** *)
+val () = print("Assign00-05-test passed!\n")
+(* ****** ****** *)
+
 end (* end-of-local *)
 
 (* ****** ****** *)

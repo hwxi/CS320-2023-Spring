@@ -14,6 +14,10 @@ val () = assert(str2int("10") = 10)
 val () = assert(str2int("100") = 100)
 val () = assert(str2int("1234") = 1234)
 
+(* ****** ****** *)
+val () = print("Assign00-04-test passed!\n")
+(* ****** ****** *)
+
 end (* end-of-local *)
 
 (* ****** ****** *)
