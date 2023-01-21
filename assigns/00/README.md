@@ -36,8 +36,8 @@ This is a directory for you. Please store in this directory all the
 code that you want to turn in. Your submitted files should be named
 as follows:
 
-MySolution/assign00-01.sml // containing your solution to assign00-01
-MySolution/assign00-02.sml // containing your solution to assign00-02
-MySolution/assign00-03.sml // containing your solution to assign00-03
-MySolution/assign00-04.sml // containing your solution to assign00-04
-MySolution/assign00-05.sml // containing your solution to assign00-05
+1. MySolution/assign00-01.sml // containing your solution to assign00-01
+2. MySolution/assign00-02.sml // containing your solution to assign00-02
+3. MySolution/assign00-03.sml // containing your solution to assign00-03
+4. MySolution/assign00-04.sml // containing your solution to assign00-04
+5. MySolution/assign00-05.sml // containing your solution to assign00-05
