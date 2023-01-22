@@ -20,7 +20,7 @@ reported to the BU disciplinary committee that handles cases as such.
 - Step 3.
 You also need to include a file containing evidence of your solutions
 passing certain given tests. An example of such a file can be found
-[here](https://github.com/hwxi/CS320-2023-Spring-hwxi/blob/main/assigns/00/Solution/assign00-testall.out).
+[here](https://github.com/hwxi/CS320-2023-Spring/blob/main/assigns/00/Solution/assign00-testall.out).
 
 ### Grading
 
