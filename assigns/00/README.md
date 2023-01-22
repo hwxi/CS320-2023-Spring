@@ -2,7 +2,7 @@
 
 ## Assign00: the 1st assignment
 
-- Out: Friday, the 20th of January at 00:00am
+- Out: Friday, the 20th of January at 12:00am
 - Due: Thursday, the 26th of January at 11:59pm
 
 ### assign00.sml
