@@ -1,0 +1,51 @@
+What is covered:
+
+############################################################
+
+Going over homework submission process: it is like filing a
+tax form: you make claims and we verify your claims
+
+############################################################
+
+Two styles of error-handling: Exceptions and option-values
+(SOME and NONE).
+
+############################################################
+
+General recursion and tail-recursion
+
+############################################################
+
+Here is some code I used during the lecture:
+
+use "./../../assign00-lib.sml";
+
+fun fact(n: int): int =
+if n > 0 then n * fact(n-1) else 1
+
+fun fact2(n: int): int =
+let
+  fun
+  loop(i: int, r: int): int =
+  if i < n then loop(i+1, (i+1)*r) else r
+in
+  loop(0, 1)
+end
+
+
+fun
+fibo(n: int): int =
+(
+case n of
+0 => 0 (* if n = 0 then 1 *)
+|
+1 => 1 (* if n = 1 then 1 *)
+|
+_ (*else*) => fibo(n-1) + fibo(n-2) (* inductive case *)
+)
+
+fun
+mydiv(x: int, y: int): int option =
+if y <> 0 then SOME(x div y) else NONE
+
+############################################################
