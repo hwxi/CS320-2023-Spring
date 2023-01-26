@@ -2,6 +2,24 @@ What is covered:
 
 ############################################################
 
+Let's see some error-handling code:
+
+fun
+char_of_digit
+(digit: int): char =
+let
+  val () =
+  assert320_some
+  (digit >= 0, "int2char")
+  val () =
+  assert320_some
+  (digit <= 9, "int2char")
+in
+  chr(ord(#"0") + digit)
+end (* end of [char_of_digit] *)
+
+############################################################
+
 optn-values: See optn-funs.sml
 
 ############################################################

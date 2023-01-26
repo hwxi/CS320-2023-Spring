@@ -33,3 +33,4 @@ as follows:
 2. MySolution/assign01-02.sml // containing your solution to assign01-02
 3. MySolution/assign01-03.sml // containing your solution to assign01-03
 4. MySolution/assign01-04.sml // containing your solution to assign01-04
+4. MySolution/assign01-05.sml // containing your solution to assign01-05

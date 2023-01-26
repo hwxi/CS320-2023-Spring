@@ -13,7 +13,11 @@ type 'a optn = 'a option
 (* ****** ****** *)
 
 exception
-ERROR320 of string option
+ERROR320 of string optn
+
+(* ****** ****** *)
+
+exception ListSubscript320
 
 (* ****** ****** *)
 

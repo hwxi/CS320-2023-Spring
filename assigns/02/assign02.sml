@@ -7,8 +7,24 @@ use "./assign02-lib.sml";
 (* ****** ****** *)
 
 (*
+Assign02-01: 10 points
+fun add3(x: int): int = x+3
+Note that 'add3' is a partial function:
+it overflows when x becomes very large. Please
+find the least integer N such that add3 overflows,
+that is, 'add3_overflow' should return the least integer
+N such that add3(N) raises Overflow.
+fun add3_overflow(): int
+Your implementation should be based on a form of binary search
+it must be efficient; it cannot take more that one-tenth of one
+second to finish on your own machine.
+*)
+
+(* ****** ****** *)
+
+(*
 //
-Assign01-05: 20 points
+Assign02-05: 20 points
 //
 // The permutations of 0,1,2 can be ordered
 // according to the lexicographic ordering as follows:
