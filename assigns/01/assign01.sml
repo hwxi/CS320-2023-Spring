@@ -3,7 +3,12 @@
 Assign01: Onward!
 *)
 (* ****** ****** *)
+(*
 use "./assign01-lib.sml";
+*)
+(* ****** ****** *)
+val list_append = op@
+val list_reverse = List.rev
 (* ****** ****** *)
 
 exception XlistConsMatch
