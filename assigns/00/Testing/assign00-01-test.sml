@@ -11,7 +11,7 @@ in
 *)
 (* ****** ****** *)
 val () =
-if (N <> 13) then raise Error else ()
+if (N <> 21) then raise Error else ()
 (* ****** ****** *)
 val () = print("Assign00-01-test passed!\n")
 (* ****** ****** *)
