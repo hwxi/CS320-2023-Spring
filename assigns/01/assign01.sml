@@ -6,6 +6,11 @@ Assign01: Onward!
 use "./assign01-lib.sml";
 (* ****** ****** *)
 
+exception XlistConsMatch
+exception XlistSubscript
+
+(* ****** ****** *)
+
 datatype 'a xlist =
 xlist_nil
 |
@@ -41,12 +46,12 @@ xlist_reverse(xs) => list_reverse(list_of_xlist(xs))
 Assign01-01: 10 points
 //
 Please implement a function
-that computes the length of an xlist DIRECTLY:
+that computes the size of an xlist DIRECTLY:
 //
-fun xlist_len(xs: 'a xlist): int
+fun xlist_size(xs: 'a xlist): int
 //
 That is, you should NOT convert xlist into list
-and then compute the length of the converted list
+and then compute the size of the converted list
 //
 *)
 
@@ -64,8 +69,8 @@ fun xlist_sub(xs: 'a xlist, i0: int): 'a
 If 'i0' is an illegal index, then xlist_sub
 should raise the Subscript exception.
 //
-You should NOT convert xlist into list
-and then compute the length of the converted list
+You should NOT convert xlist into list and
+then do subscripting.
 //
 *)
 
