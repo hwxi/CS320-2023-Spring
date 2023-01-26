@@ -118,6 +118,9 @@ list_get_at
 
 (* ****** ****** *)
 
+(*
+This function is often called [list_nth]
+*)
 fun
 list_get_at
 (xs: 'a list, i0: int): 'a =

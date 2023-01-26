@@ -17,6 +17,8 @@ ERROR320 of string optn
 
 (* ****** ****** *)
 
+exception ConsMatch320
+exception OptnSubscript320
 exception ListSubscript320
 
 (* ****** ****** *)
@@ -74,12 +76,12 @@ case xs of nil => false | _ :: _ => true)
 fun
 list_unnil(xs: 'a list): unit =
 (
-case xs of nil => () | _ => raise Subscript)
+case xs of nil => () | _ => raise ConsMatch320)
 fun
 list_uncons(xs: 'a list): 'a * 'a list =
 (
 case xs of
-x1 :: xs => (x1, xs) | _ => raise Subscript)
+x1 :: xs => (x1, xs) | _ => raise ConsMatch320)
 
 (* ****** ****** *)
 
@@ -97,11 +99,11 @@ case xs of NONE => false | SOME _ => true)
 fun
 optn_unnone(xs: 'a optn): unit =
 (
-case xs of NONE => () | _ => raise Subscript)
+case xs of NONE => () | _ => raise ConsMatch320)
 fun
 optn_unsome(xs: 'a optn): 'a =
 (
-case xs of SOME x0 => x0 | _ => raise Subscript)
+case xs of SOME x0 => x0 | _ => raise ConsMatch320)
 
 (* ****** ****** *)
 
