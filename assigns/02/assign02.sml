@@ -24,6 +24,22 @@ second to finish on your own machine.
 
 (*
 //
+Assign02-02: 10 points
+//
+Please implement a function that checks DIRECTLY
+if a given int xlist is sorted/ordered ascendingly:
+//
+fun xlist_sortedq(xs: int xlist): bool
+//
+You should NOT convert xlist into list
+and then check whether the converted list is sorted.
+//
+*)
+
+(* ****** ****** *)
+
+(*
+//
 Assign02-05: 20 points
 //
 // The permutations of 0,1,2 can be ordered

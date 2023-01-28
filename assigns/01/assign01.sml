@@ -123,20 +123,4 @@ fun str2int_opt(cs: string): int option
 
 (* ****** ****** *)
 
-(*
-//
-Assign01-05: 10 points
-//
-Please implement a function that checks DIRECTLY
-if a given int xlist is sorted/ordered ascendingly:
-//
-fun xlist_sortedq(xs: int xlist): bool
-//
-You should NOT convert xlist into list
-and then check whether the converted list is sorted.
-//
-*)
-
-(* ****** ****** *)
-
 (* end of [CS320-2023-Spring-assign01.sml] *)
