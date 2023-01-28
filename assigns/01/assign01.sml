@@ -93,8 +93,8 @@ fun xlist_remove_reverse(xs: 'a xlist): 'a xlist
 //
 In particular, your implementation should guarantee:
 1. 'xs' and 'ys' represent the same list
-2. 'ys' does NOT make any use of 'mylist_reverse'
-3. 'xs' and 'ys' use the same number of 'mylist_append'
+2. 'ys' does NOT make any use of 'xlist_reverse'
+3. 'xs' and 'ys' use the same number of 'xlist_append'
 //
 *)
   
