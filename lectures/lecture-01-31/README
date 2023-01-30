@@ -1,0 +1,75 @@
+What is covered:
+
+Tail-recursion, Mutual-recursion, Exceptions
+
+############################################################
+
+fun
+list_last(xs: 'a list): 'a option =
+let
+  fun
+  loop(xs: 'a list, x0: 'a): 'a =
+  (
+  case xs of
+  nil => x0 | x1 :: xs => loop(xs, x1)
+  )
+in
+  case xs of
+  nil => NONE | x1 :: xs => SOME(loop(xs, x1))
+end
+  
+############################################################
+
+Mutual recursion
+
+fun isevn(x: int): bool =
+if x <= 0 then true else isodd(x-1)
+
+and isodd(x: int): bool =
+if x <= 0 then false else isevn(x-1)
+
+############################################################
+
+Exceptions:
+
+(* ****** ****** *)
+
+fun
+list_mult(xs: int list): int =
+case xs of
+nil => 1
+|
+x1 :: xs => x1 * list_mult(xs)
+
+(* ****** ****** *)
+
+fun
+list_mult_opt(xs: int list): int =
+case xs of
+nil => 1
+|
+x1 :: xs =>
+if x1 = 0 then 0 else x1 * list_mult_opn(xs)
+
+(* ****** ****** *)
+
+fun
+list_mult_exn(xs: int list): int =
+let
+exception Zero
+fun
+helper(xs: int list): int =
+(
+case xs of
+|
+nil => 1
+|
+x1 :: xs =>
+if x1 = 0 then raise Zero else x1 * helper(xs)
+)
+
+in
+  helper(xs) handle Zero => 0
+end
+
+############################################################
