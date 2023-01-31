@@ -14,6 +14,8 @@ val () = assert(str2int_opt("0+1") = NONE)
 val () = assert(str2int_opt("10z") = NONE)
 val () = assert(str2int_opt("100;") = NONE)
 val () = assert(str2int_opt("x1234") = NONE)
+val () = assert(str2int_opt("-1234") = NONE)
+val () = assert(str2int_opt("12-345") = NONE)
 
 val () = assert(str2int_opt("0") = SOME 0)
 val () = assert(str2int_opt("10") = SOME 10)
