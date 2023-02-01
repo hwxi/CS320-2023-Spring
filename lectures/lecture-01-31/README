@@ -1,11 +1,28 @@
 What is covered:
 
 Tail-recursion, Mutual-recursion, Exceptions
+^^^^^^^^^^^^^^  ^^^^^^^^^^^^^^^^
 
 ############################################################
 
 fun
-list_last(xs: 'a list): 'a option =
+list_last
+(xs: 'a list): 'a option =
+(
+case xs of
+  nil => NONE
+| x1 :: xs =>
+  let
+    val res = list_last(xs)
+  in
+    case res of
+    NONE => SOME(x1) | SOME _ => res
+  end
+)
+
+fun
+list_last
+(xs: 'a list): 'a option =
 let
   fun
   loop(xs: 'a list, x0: 'a): 'a =
@@ -22,10 +39,12 @@ end
 
 Mutual recursion
 
-fun isevn(x: int): bool =
+fun
+isevn(x: int): bool =
 if x <= 0 then true else isodd(x-1)
 
-and isodd(x: int): bool =
+and
+isodd(x: int): bool =
 if x <= 0 then false else isevn(x-1)
 
 ############################################################
@@ -49,7 +68,7 @@ case xs of
 nil => 1
 |
 x1 :: xs =>
-if x1 = 0 then 0 else x1 * list_mult_opn(xs)
+if x1 = 0 then 0 else x1 * list_mult_opt(xs)
 
 (* ****** ****** *)
 
