@@ -1,5 +1,10 @@
 (* ****** ****** *)
 (*
+HX-2023-01-31:
+Mutual recursion
+*)
+(* ****** ****** *)
+(*
 fun
 isevn(x: int): bool =
 if x <= 0

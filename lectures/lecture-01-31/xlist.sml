@@ -12,6 +12,10 @@ xlist_append of ('a xlist * 'a xlist)
 xlist_reverse of ('a xlist)
 
 (* ****** ****** *)
+(*
+HX-2023-01-31: Mutual recursion
+*)
+(* ****** ****** *)
 
 (*
 HX-2023-01-31:
