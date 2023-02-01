@@ -13,6 +13,11 @@ xlist_reverse of ('a xlist)
 
 (* ****** ****** *)
 
+(*
+HX-2023-01-31:
+Finding the first element
+(that is, head) of a given xlist
+*)
 fun
 xlist_head
 (xs: 'a xlist): 'a option =
@@ -39,6 +44,11 @@ end
 xlist_reverse(xs) => xlist_last(xs)
 )
 
+(*
+HX-2023-01-31:
+Finding the last element
+of a given xlist
+*)
 and
 xlist_last
 (xs: 'a xlist): 'a option =
