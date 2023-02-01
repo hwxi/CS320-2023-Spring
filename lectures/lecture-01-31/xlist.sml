@@ -82,4 +82,25 @@ xlist_reverse(xs) => xlist_head(xs)
 
 (* ****** ****** *)
 
+fun
+xlist_do_reverse
+(xs: 'a xlist): 'a xlist =
+(
+case xs of
+xlist_nil => xlist_nil
+|
+xlist_reverse(xs) => xs
+|
+xlist_cons(xs, x1) =>
+xlist_snoc(x1, xlist_do_reverse(xs))
+|
+xlist_snoc(xs, x1) =>
+xlist_case(x1, xlist_do_reverse(xs))
+|
+xlist_append(xs, ys) =>
+xlist_append(xlist_do_reverse(ys), xlist_do_reverse(xs))
+)
+
+(* ****** ****** *)
+
 (* end of [CS320-2023-Spring-lectures-xlist.sml] *)
