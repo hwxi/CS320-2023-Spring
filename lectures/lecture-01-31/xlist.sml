@@ -57,10 +57,10 @@ xlist_snoc(xs, x1) => SOME(x1)
 |
 xlist_append(xs, ys) =>
 let
-val res = xlist_head(ys)
+val res = xlist_last(ys)
 in
   case res of
-  NONE => xlist_head(xs) | SOME _ => res
+  NONE => xlist_last(xs) | SOME _ => res
 end
 |
 xlist_reverse(xs) => xlist_head(xs)
