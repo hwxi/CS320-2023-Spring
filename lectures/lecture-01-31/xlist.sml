@@ -91,11 +91,11 @@ xlist_nil => xlist_nil
 |
 xlist_reverse(xs) => xs
 |
-xlist_cons(xs, x1) =>
-xlist_snoc(x1, xlist_do_reverse(xs))
+xlist_cons(x1, xs) =>
+xlist_snoc(xlist_do_reverse(xs), x1)
 |
 xlist_snoc(xs, x1) =>
-xlist_case(x1, xlist_do_reverse(xs))
+xlist_cons(x1, xlist_do_reverse(xs))
 |
 xlist_append(xs, ys) =>
 xlist_append(xlist_do_reverse(ys), xlist_do_reverse(xs))
