@@ -74,11 +74,15 @@ val () = assert320_some
 val () = assert320_some(nreverse(ys)=0, "assign01-03-test:1")
 val () = assert320_some(nappend(xs)=nappend(ys), "assign01-03-test:1")
 (* ****** ****** *)
+(*
 val xs = xlist_cons(0, xs)
+*)
 val xs = xlist_cons(1, xs)
 val xs = xlist_snoc(xs, 2)
+(*
 val xs = xlist_snoc(xs, 3)
 val xs = xlist_snoc(xs, 4)
+*)
 val xs = xlist_reverse(xs)
 val xs = xlist_append(xs, xs)
 (* ****** ****** *)
