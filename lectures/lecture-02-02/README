@@ -1,14 +1,25 @@
 What is covered:
 
-1. Thank about debugging when writing code.
+1. Think about debugging when writing code.
 2. Insert print statements before assertions.
 3. It makes sense to try to pass the given tests
 one at a time.
 
 ############################################################
 
+SML/NJ: there is tail-call optimization (CPS-based)
+Python: there is no tail-call optimization. We will study
+some methods for addressing stack overflow due to recursive
+calls.
+
+Please read the code in testing.py
+
+############################################################
+
 Today's main topic:
 
 Encoding datatypes (ML) in Python
+
+Please read the code in mylist.py and xlist.py.
 
 ############################################################
