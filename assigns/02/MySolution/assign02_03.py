@@ -7,6 +7,6 @@ print("[import ./../assign02.py] is done!")
 ####################################################
 #
 # Please implement (20 points)
-# mylist_mergesort (see list_mergesort)
+# mylist_mergesort (see list_mergesort in assign02.sml)
 #
 ####################################################

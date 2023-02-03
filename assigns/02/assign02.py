@@ -52,10 +52,23 @@ def mylist_print(xs):
     sep = ";"
     def auxlst(xs, n0):
         if (xs.ctag > 0):
-            if (n0 > 0): print(sep, end='')
+            if (n0 > 0): print(sep,end='')
             print(xs.cons1,end=''); auxlst(xs.cons2, n0+1)
     print("(", end=''); auxlst(xs, 0); print(")", end='')
 # end-of-[mylist_print]
+
+####################################################
+
+def mylist_make_list(xs):
+    res = mylist_nil()
+    for x1 in reversed(xs):
+        res = mylist_cons(x1, res)
+    return res
+# end-of-[mylist_make_list]
+
+# xs = [1,2,3,4,5]
+# ys = mylist_make_list(xs)
+# print("ys = ",end=''); mylist_print(ys); print();
 
 ####################################################
 
