@@ -3,10 +3,6 @@
 # Assign02: FP in Python
 # *)
 ####################################################
-# see: MySolution/assign02_01.py: 20 points
-# see: MySolution/assign02_02.py: 10 points
-# see: MySolution/assign02_03.py: 20 points
-####################################################
 
 # datatype 'a list =
 # nil | cons of ('a * 'a list)
