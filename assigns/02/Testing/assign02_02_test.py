@@ -35,9 +35,9 @@ def mylist_sortedq(xs):
     # end-of-[if-then-else]
 # end-of-[def mylist_sortedq(xs)]
 ####################################################
-xs = mylist_quicksort(xs)
-assert(mylist_sortedq(xs))
-print("xs = ",end=''); mylist_print(xs); print();
+ys = mylist_quicksort(xs)
+assert(mylist_sortedq(ys))
+print("ys = ",end=''); mylist_print(ys); print();
 ####################################################
 print("Assign02-02-test passed!\n")
 ####################################################
