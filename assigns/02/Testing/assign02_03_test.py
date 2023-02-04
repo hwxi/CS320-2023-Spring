@@ -58,6 +58,7 @@ def mylist_sortedq(xs):
 # end-of-[def mylist_sortedq(xs)]
 ####################################################
 xs = mylist_mergesort(xs)
+assert(mylist_sortedq(xs))
 print("xs = ",end=''); mylist_print(xs); print();
 ####################################################
 print("Assign02-03-test passed!\n")
