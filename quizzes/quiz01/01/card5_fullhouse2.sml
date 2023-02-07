@@ -255,11 +255,11 @@ fun card5_fullhouse(cs: card5): bool
 *)
 
 fun
-card5_fullhouse(cs: card5): bool = false
+card5_fullhouse(cs: card5): bool =
 (*
 Please Give your implementation as follows:
 *)
 
 (* ****** ****** *)
 
-(* end of [CS320-2023-Spring-quiz01-card5_fullhouse.sml] *)
+(* end of [CS320-2023-Spring-quiz01-card5_fullhouse2.sml] *)
