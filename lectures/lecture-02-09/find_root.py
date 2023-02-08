@@ -18,8 +18,8 @@
 
 def find_root(f0):
     class Zero(Exception):
-        def __init__(self, arg1):
-            self.arg1 = arg1
+        def __init__(self, val1):
+            self.val1 = val1
     def loop(i):
         if (f0(i) != 0):
             return loop(i+1)
@@ -28,9 +28,11 @@ def find_root(f0):
     try:
         loop(0)
     except Zero as exn:
-        return exn.arg1
+        return exn.val1
 
-print("root(x*x-x-10100) = ", find_root(lambda x: x*x - x - 10100));
+################################################
+print("root(x*x-x-6) =", find_root(lambda x: x*x - x - 6));
+print("root(x*x-x-10100) =", find_root(lambda x: x*x - x - 10100));
 ################################################
 
-## end of [BUCASCS320-2023-Spring-find_root.sml] ##
+## end of [BUCASCS320-2023-Spring-find_root.py] ##

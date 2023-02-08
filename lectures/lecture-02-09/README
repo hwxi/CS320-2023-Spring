@@ -1,5 +1,31 @@
+############################################################
+
 What is covered:
 
-Currying, Higher-order functions (continue)
+Currying, Higher-order functions (start)
+
+############################################################
+
+fun
+myadd (x: int) (y: int) = x + y
+
+val myadd1 = myadd(1)
+val myadd2 = myadd(2)
+val myadd10 = myadd(10)
+
+############################################################
+
+"Functions as first-class citizens (values)"
+
+############################################################
+
+fun tup2_map
+( xx: 'a * 'a
+, fopr: 'a -> 'b): 'b * 'b = (fopr(#1(xx)), fopr(#2(xx)))
+
+fun tup3_map
+( xx
+: 'a * 'a * 'a
+, fopr: 'a -> 'b): 'b * 'b * 'b = (fopr(#1(xx)), fopr(#2(xx)), fopr(#3(xx)))
 
 ############################################################
