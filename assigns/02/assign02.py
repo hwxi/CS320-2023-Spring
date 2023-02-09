@@ -67,9 +67,9 @@ def mylist_make_list(xs):
     return res
 # end-of-[mylist_make_list]
 
-# xs = [1,2,3,4,5]
-# ys = mylist_make_list(xs)
-# print("ys = ",end=''); mylist_print(ys); print();
+xs = [1,2,3,4,5]
+ys = mylist_make_list(xs)
+print("ys = ",end=''); mylist_print(ys); print();
 
 ####################################################
 
