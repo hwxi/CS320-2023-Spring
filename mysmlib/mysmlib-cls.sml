@@ -107,6 +107,21 @@ case xs of SOME x0 => x0 | _ => raise ConsMatch320)
 
 (* ****** ****** *)
 
+fun
+list_length
+(xs: 'a list): int =
+let
+  fun
+  loop
+  (xs: 'a list, res: int): int =
+  case xs of
+    nil => res
+  | _ :: xs => loop(xs, res+1)
+in
+  loop(xs, 0)
+end (* end of [list_length(xs)]: let *)
+
+(* ****** ****** *)
 
 fun
 list_map
