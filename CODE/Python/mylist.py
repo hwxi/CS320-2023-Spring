@@ -1,5 +1,5 @@
 class mylist(object):
-    def get_ctag():
+    def get_ctag(self):
         return self.ctag
     def __iter__(self):
         return mylist_iter(self)
@@ -31,9 +31,9 @@ class mylist_cons(mylist):
         self.head = head
         self.tail = tail
         return None
-    def get_head():
+    def get_head(self):
         return self.head
-    def get_tail():
+    def get_tail(self):
         return self.tail
 # end-of-class(mylist_cons)
 
