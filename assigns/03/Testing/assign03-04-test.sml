@@ -34,7 +34,7 @@ val () =
 assert320_some
 (list_longest_ascend(xs) = [2, 2, 3, 3, 4, 4, 5, 5], "assign03-04-test:6")
 (* ****** ****** *)
-val () = print("Assign03-03-test passed!\n")
+val () = print("Assign03-04-test passed!\n")
 (* ****** ****** *)
 
 (* end of [CS320-2023-Spring-assign03-04-test.sml] *)
