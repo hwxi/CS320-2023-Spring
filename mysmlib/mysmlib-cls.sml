@@ -136,13 +136,13 @@ case xs of
 
 fun
 list_reduce_left
-( x0: 'a, xs: 'a list
-, fopr: 'a * 'a -> 'a): 'a =
+( r0: 'r, xs: 'a list
+, fopr: 'r * 'a -> 'r): 'r =
 (
 case xs of
-  nil => x0
+  nil => r0
 | x1 :: xs =>
-  list_reduce_left(fopr(x0, x1), xs, fopr)
+  list_reduce_left(fopr(r0, x1), xs, fopr)
 )
 
 (* ****** ****** *)
@@ -150,12 +150,12 @@ case xs of
 fun
 list_reduce_right
 ( xs: 'a list
-, x0: 'a, fopr: 'a * 'a -> 'a): 'a =
+, r0: 'r, fopr: 'a * 'r -> 'r): 'r =
 (
 case xs of
-  nil => x0
+  nil => r0
 | x1 :: xs =>
-  fopr(x1, list_reduce_right(xs, x0, fopr))
+  fopr(x1, list_reduce_right(xs, r0, fopr))
 )
   
 (* ****** ****** *)
