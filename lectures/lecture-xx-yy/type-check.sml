@@ -120,4 +120,4 @@ and FACT_tmp(x: mytype): mytype =
 
 (* ****** ****** *)
 
-(* end of [BUCASCS320-2023-Spring-typecheck.sml] *)
+(* end of [BUCASCS320-2023-Spring-lectures-type-check.sml] *)

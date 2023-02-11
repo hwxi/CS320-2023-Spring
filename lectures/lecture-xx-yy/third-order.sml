@@ -80,6 +80,30 @@ foreach_to_foldleft(list_foreach)(r0,xs,fopr)
 (* ****** ****** *)
 
 fun
+foreach_to_length
+(
+foreach:
+('xs*('x0->unit))->unit): 'xs -> int =
+fn(xs) =>
+(foreach_to_foldleft
+ (foreach)(0, xs, fn(r0, x0) => r0 + 1))
+
+(* ****** ****** *)
+
+fun
+foreach_to_listize
+(
+foreach:
+('xs*('x0->unit))->unit): 'xs -> 'x0 list =
+(
+fn(xs) =>
+list_reverse
+(foreach_to_foldleft
+ (foreach)(nil, xs, fn(r0, x0) => x0 :: r0)))
+
+(* ****** ****** *)
+
+fun
 foreach_to_rlistize
 (
 foreach:
@@ -96,4 +120,4 @@ fn(xs) => foreach_to_rlistize(list_foreach)(xs)
 
 (* ****** ****** *)
 
-(* end of [CS320-2023-Spring-lectures-thrid-order.sml] *)
+(* end of [CS320-2023-Spring-lectures-third-order.sml] *)
