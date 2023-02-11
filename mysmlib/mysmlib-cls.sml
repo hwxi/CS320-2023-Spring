@@ -160,4 +160,22 @@ case xs of
   
 (* ****** ****** *)
 
+val
+list_append =
+fn(xs: 'a list, ys: 'a list) =>
+list_reduce_right(xs, ys, fn(x, r) => x :: r)
+
+(* ****** ****** *)
+
+val
+list_reverse =
+fn(xs: 'a list) =>
+list_reduce_left(xs, [], fn(r, x) => x :: r)
+val
+list_rappend =
+fn(xs: 'a list, ys: 'a list) =>
+list_reduce_left(xs, ys, fn(r, x) => x :: r)
+
+(* ****** ****** *)
+
 (* end of [BUCASCS320-2023-Spring-mysmlib-cls.sml] *)
