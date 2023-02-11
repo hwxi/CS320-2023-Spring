@@ -80,7 +80,7 @@ foreach_to_foldleft(list_foreach)(r0,xs,fopr)
 (* ****** ****** *)
 
 fun
-foreach_to_listize
+foreach_to_rlistize
 (
 foreach:
 ('xs*('x0->unit))->unit): 'xs -> 'x0 list =
@@ -91,8 +91,8 @@ fn(xs) =>
 (* ****** ****** *)
 
 val
-list_listize =
-fn(xs) => foreach_to_listize(list_foreach)(xs)
+list_rlistize =
+fn(xs) => foreach_to_rlistize(list_foreach)(xs)
 
 (* ****** ****** *)
 
