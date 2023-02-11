@@ -1,4 +1,7 @@
 (* ****** ****** *)
+use
+"./../../mysmlib/mysmlib-cls.sml";
+(* ****** ****** *)
 
 fun
 forall_to_foreach
@@ -9,8 +12,11 @@ forall_to_foreach
 fn(xs: 'xs, work: 'x0 -> unit) =>
 let
 val _ =
-forall(xs, fn(x0: 'x0) => (work(x0); true)) in ()
-end
+forall
+(xs, fn(x0: 'x0) => (work(x0); true))
+in
+  ( (*void*) )
+end (* end of [forall_to_foreach]: let *)
 
 (* ****** ****** *)
 
@@ -22,21 +28,71 @@ foreach_to_forall
 : ('xs * ('x0 -> bool)) -> bool =
 fn(xs: 'xs, test: 'x0 -> bool) =>
 let
-  exception Done
+  exception False
 in(*let*)
 (* ****** ****** *)
 let
 val () =
 foreach
-(xs, fn(x0: 'x0) =>
+(
+xs
+,
+fn(x0: 'x0) =>
 if
-test(x0)
-then raise Done else ())
+test(x0) then () else raise False)
 in
-  false
-end handle Done(*void*) => true
+  ( true )
+end handle False(*void*) => (false)
 (* ****** ****** *)
 end (* end of [foreach_to_forall]: let *)
+
+(* ****** ****** *)
+
+val
+list_forall =
+fn(xs, test) =>
+foreach_to_forall(list_foreach)(xs, test)
+
+(* ****** ****** *)
+
+fun
+foreach_to_foldleft
+( foreach
+: ('xs * ('x0 -> unit)) -> unit
+)
+: ('r0 * 'xs * ('r0*'x0 -> 'r0)) -> 'r0 =
+fn(r0, xs, fopr) =>
+let
+val res = ref(r0)
+in
+foreach
+( xs
+, fn(x0) => res := fopr(!res, x0)); !res
+end (* end of [foreach_to_foldleft]: let *)
+
+(* ****** ****** *)
+
+val
+list_foldleft =
+fn(r0,xs,fopr) =>
+foreach_to_foldleft(list_foreach)(r0,xs,fopr)
+
+(* ****** ****** *)
+
+fun
+foreach_to_listize
+(
+foreach:
+('xs*('x0->unit))->unit): 'xs -> 'x0 list =
+fn(xs) =>
+(foreach_to_foldleft
+ (foreach)(nil, xs, fn(r0, x0) => x0 :: r0))
+
+(* ****** ****** *)
+
+val
+list_listize =
+fn(xs) => foreach_to_listize(list_foreach)(xs)
 
 (* ****** ****** *)
 

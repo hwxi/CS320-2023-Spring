@@ -160,6 +160,13 @@ case xs of
   
 (* ****** ****** *)
 
+(*
+val list_foldleft = list_reduce_left
+val list_foldright = list_reduce_right
+*)
+
+(* ****** ****** *)
+
 val
 list_append =
 fn(xs: 'a list, ys: 'a list) =>
@@ -170,11 +177,20 @@ list_reduce_right(xs, ys, fn(x, r) => x :: r)
 val
 list_reverse =
 fn(xs: 'a list) =>
-list_reduce_left(xs, [], fn(r, x) => x :: r)
+list_reduce_left([], xs, fn(r, x) => x :: r)
 val
 list_rappend =
 fn(xs: 'a list, ys: 'a list) =>
-list_reduce_left(xs, ys, fn(r, x) => x :: r)
+list_reduce_left(ys, xs, fn(r, x) => x :: r)
+
+(* ****** ****** *)
+
+val
+list_foreach =
+fn
+( xs: 'a list
+, work: 'a -> unit) =>
+list_reduce_left((), xs, fn(r, x) => work(x))
 
 (* ****** ****** *)
 
