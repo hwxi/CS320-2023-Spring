@@ -47,34 +47,36 @@ case xs of
 
 (* ****** ****** *)
 
-val xlist_forall =
+val
+xlist_forall =
 fn(xs,test) =>
 foreach_to_forall(xlist_foreach)(xs,test)
 
 (* ****** ****** *)
 
-val xlist_length =
+val
+xlist_length =
 fn(xs) => foreach_to_length(xlist_foreach)(xs)
 
 (* ****** ****** *)
 
-val xlist_listize =
-fn(xs) => foreach_to_listize(xlist_foreach)(xs)
-val xlist_rlistize =
-fn(xs) => foreach_to_listize(xlist_rforeach)(xs)
+val
+xlist_listize =
+fn(xs) =>
+  foreach_to_rlistize(xlist_rforeach)(xs)
+val
+xlist_rlistize =
+fn(xs) => foreach_to_rlistize(xlist_foreach)(xs)
 
 (* ****** ****** *)
-
-val xlist_foldleft =
+val
+xlist_foldleft =
 fn(r0,xs,fopr) =>
   foreach_to_foldleft(xlist_foreach)(r0,xs,fopr)
-
-(* ****** ****** *)
-(*
-val xlist_foldright
-fn(r0,xs,fopr) =>
-  rforeach_to_foldright(xlist_rforeach)(r0,xs,fopr)
-*)
+val
+xlist_foldright =
+fn(xs,r0,fopr) =>
+  foreach_to_foldleft(xlist_rforeach)(r0,xs,fopr)
 (* ****** ****** *)
 
 val xs = xlist_nil

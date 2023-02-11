@@ -98,8 +98,9 @@ foreach:
 (
 fn(xs) =>
 list_reverse
-(foreach_to_foldleft
- (foreach)(nil, xs, fn(r0, x0) => x0 :: r0)))
+(
+foreach_to_foldleft
+(foreach)(nil, xs, fn(r0, x0) => x0 :: r0)))
 
 (* ****** ****** *)
 
