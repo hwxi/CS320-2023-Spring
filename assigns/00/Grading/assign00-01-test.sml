@@ -10,8 +10,16 @@ in
 // changed to another value.
 *)
 (* ****** ****** *)
+local
+  fun loop(N: int): int =
+  let
+    val _ = fact(N) in loop(N+1)
+  end
+  handle Overflow => N
+in (*local*)
 val () =
-if (N <> 13) then raise Error else ()
+if (N <> loop(0)) then raise Error else ()
+end (* local *)
 (* ****** ****** *)
 val () = print("Assign00-01-test passed!\n")
 (* ****** ****** *)
