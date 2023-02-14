@@ -72,6 +72,9 @@ fn(xs) => foreach_to_rlistize(xlist_foreach)(xs)
 val xlist_get_at =
 fn(xs, i0) =>
   foreach_to_get_at(xlist_foreach)(xs,i0)
+val xlist_rget_at =
+fn(xs, i0) =>
+  foreach_to_get_at(xlist_rforeach)(xs,i0)
 (* ****** ****** *)
 val
 xlist_foldleft =
@@ -101,6 +104,9 @@ val x2 = xlist_get_at(xs, 2)
 val x3 = xlist_get_at(xs, 3)
 val x4 = xlist_get_at(xs, 4)
 val x5 = xlist_get_at(xs, 5)
+
+val x0_r = xlist_rget_at(xs, 0)
+val x1_r = xlist_rget_at(xs, 1)
 
 (* ****** ****** *)
 val x10 =
