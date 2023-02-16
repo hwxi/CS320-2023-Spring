@@ -1,4 +1,9 @@
 (* ****** ****** *)
+
+use
+"./../../mysmlib/mysmlib-cls.sml";
+
+(* ****** ****** *)
 (*
 Some combinators for handling two lists
 *)
@@ -18,6 +23,22 @@ case xs of
   | y1 :: ys =>
     (x1, y1) :: list2_zip(xs, ys))
 ) (* end of [list2_zip(xs, ys)]: case *)
+
+(* ****** ****** *)
+
+fun
+list2_cross
+( xs: 'a list
+, ys: 'b list): ('a*'b) list =
+list_concat
+(list_map(xs, fn(x0) => list_map(ys, fn(y0) => (x0, y0))))
+
+(* ****** ****** *)
+
+fun
+list_enumerate
+(xs: 'a list): (int * 'a) list =
+list2_zip(int1_listize(list_length(xs)), xs)
 
 (* ****** ****** *)
 
