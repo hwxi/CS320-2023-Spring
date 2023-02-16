@@ -160,17 +160,24 @@ case xs of
   
 (* ****** ****** *)
 
-(*
-val list_foldleft = list_reduce_left
-val list_foldright = list_reduce_right
-*)
-
-(* ****** ****** *)
+val
+list_append = (* a.k.a. @ *)
+fn(xs: 'a list, ys: 'a list) =>
+list_reduce_right(xs, ys, op::)
 
 val
-list_append = (* a.k.a. '@' *)
-fn(xs: 'a list, ys: 'a list) =>
-list_reduce_right(xs, ys, fn(x, r) => x :: r)
+list_concat = (* 'flatten' *)
+fn(xss: 'a list list) =>
+list_reduce_right(xss, [], op@)
+
+(* ****** ****** *)
+val
+list_extend =
+fn(xs, x0) => list_append(xs, [y0])
+(* ****** ****** *)
+
+val list_foldleft = list_reduce_left
+val list_foldright = list_reduce_right
 
 (* ****** ****** *)
 
