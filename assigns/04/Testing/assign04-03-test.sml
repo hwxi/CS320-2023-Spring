@@ -30,6 +30,7 @@ fn(xs, test) => forall_to_exists(list_forall')(xs, test)
 val xs = [1,2,3,4,5]
 val p1 = fn(x) => (x < 6)
 val p2 = fn(x) => (x > 2)
+val p3 = fn(x) => (x = 2)
 val ( ) =
 assert320_some
 (list_forall(xs, p1) = list_forall'(xs, p1), "assign04-03-test:1")
@@ -42,6 +43,9 @@ assert320_some
 val ( ) =
 assert320_some
 (list_exists(xs, p2) = list_exists'(xs, p2), "assign04-03-test:4")
+val ( ) =
+assert320_some
+(list_exists(xs, p3) = list_exists'(xs, p3), "assign04-03-test:5")
 
 (* ****** ****** *)
 val () = print("Assign04-03-test passed!\n")
