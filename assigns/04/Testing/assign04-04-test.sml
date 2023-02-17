@@ -7,6 +7,18 @@ exception Error
 in (* in-of-local *)
 
 (* ****** ****** *)
+val
+board_foreach =
+fn
+( bd: board_t
+, work: int -> unit) =>
+let
+val (x0, x1, x2, x3, x4, x5, x6, x7) = bd
+in
+  work(x0); work(x1); work(x2); work(x3);
+  work(x4); work(x5); work(x6); work(x7); ()
+end
+(* ****** ****** *)
 
 val
 theSolutions =
