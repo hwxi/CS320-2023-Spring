@@ -7,25 +7,19 @@ exception Error
 in (* in-of-local *)
 
 (* ****** ****** *)
-val () =
-if (isPrime(0)) then raise Error else ()
-val () =
-if (isPrime(1)) then raise Error else ()
-val () =
-if not(isPrime(2)) then raise Error else ()
+
+fun
+power
+(x: int, y: int): int =
+int1_foldleft(1, y, fn(r, _) => r * x)
+
 (* ****** ****** *)
-val () =
-if (isPrime(5) <> true) then raise Error else ()
-val () =
-if (isPrime(7) <> true) then raise Error else ()
-val () =
-if (isPrime(57) <> false) then raise Error else ()
-val () =
-if (isPrime(101) <> true) then raise Error else ()
-val () =
-if (isPrime(1001) <> false) then raise Error else ()
-val () =
-if (isPrime(10001) <> false) then raise Error else ()
+
+val xs = [1,2,3,4,5]
+val xss = list_subsets(xs)
+val ( ) =
+assert320_some
+(list_length(xss) = power(2, list_length(xs)), "assign04-02-test:1")
 
 (* ****** ****** *)
 val () = print("Assign00-02-test passed!\n")
