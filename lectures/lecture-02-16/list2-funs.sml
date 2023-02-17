@@ -27,11 +27,12 @@ case xs of
 (* ****** ****** *)
 
 fun
-list2_cross
+list2_feq
 ( xs: 'a list
-, ys: 'b list): ('a*'b) list =
-list_concat
-(list_map(xs, fn(x0) => list_map(ys, fn(y0) => (x0, y0))))
+, ys: 'a list
+, feq: 'a * 'a -> bool): bool =
+list_forall
+(list2_zip(xs, ys), fn(x, y) => feq(x, y))
 
 (* ****** ****** *)
 
@@ -39,6 +40,15 @@ fun
 list_enumerate
 (xs: 'a list): (int * 'a) list =
 list2_zip(int1_listize(list_length(xs)), xs)
+
+(* ****** ****** *)
+
+fun
+list2_cross
+( xs: 'a list
+, ys: 'b list): ('a*'b) list =
+list_concat
+(list_map(xs, fn(x0) => list_map(ys, fn(y0) => (x0, y0))))
 
 (* ****** ****** *)
 

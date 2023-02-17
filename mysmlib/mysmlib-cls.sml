@@ -135,6 +135,19 @@ case xs of
 (* ****** ****** *)
 
 fun
+list_filter
+(xs: 'a list, test: 'a -> bool): 'a list =
+(
+case xs of
+  nil => nil
+| x1 :: xs =>
+  if test(x1)
+  then x1 :: list_filter(xs, test) else list_filter(xs, test)
+)
+
+(* ****** ****** *)
+
+fun
 list_reduce_left
 ( r0: 'r, xs: 'a list
 , fopr: 'r * 'a -> 'r): 'r =
@@ -281,6 +294,13 @@ end (* end of [foreach_to_forall]: let *)
 (* ****** ****** *)
 
 val
+int1_forall =
+fn(xs, test) =>
+foreach_to_forall(int1_foreach)(xs, test)
+
+(* ****** ****** *)
+
+val
 list_forall =
 fn(xs, test) =>
 foreach_to_forall(list_foreach)(xs, test)
@@ -368,6 +388,41 @@ foreach:
 fn(xs) =>
 (foreach_to_foldleft
  (foreach)(nil, xs, fn(r0, x0) => x0 :: r0))
+
+(* ****** ****** *)
+
+fun
+foreach_to_map_list
+(
+foreach:
+('xs * ('x0->unit))->unit)
+:
+('xs * ('x0 -> 'y0)) -> 'y0 list
+=
+(
+fn(xs, fopr) =>
+list_reverse
+(
+foreach_to_foldleft
+(foreach)(nil, xs, fn(r0, x0) => fopr(x0) :: r0)))
+
+(* ****** ****** *)
+
+fun
+foreach_to_filter_list
+(
+foreach:
+('xs * ('x0->unit))->unit)
+:
+('xs * ('x0 -> bool)) -> 'x0 list
+=
+(
+fn(xs, test) =>
+list_reverse
+(
+foreach_to_foldleft(foreach)
+( nil, xs
+, fn(r0, x0) => if test(x0) then x0 :: r0 else r0)))
 
 (* ****** ****** *)
 
