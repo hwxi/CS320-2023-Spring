@@ -22,7 +22,7 @@ assert320_some
 (list_length(xss) = power(2, list_length(xs)), "assign04-02-test:1")
 
 (* ****** ****** *)
-val () = print("Assign00-02-test passed!\n")
+val () = print("Assign04-02-test passed!\n")
 (* ****** ****** *)
 
 end (* end-of-local *)
