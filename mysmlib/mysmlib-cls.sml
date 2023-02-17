@@ -40,6 +40,14 @@ if claim
 (* ****** ****** *)
 
 fun
+pow_int_int
+(x: int, y: int): int =
+if y <= 0
+then 1 else x * pow_int_int(x, y-1)
+
+(* ****** ****** *)
+
+fun
 char_of_digit
 (digit: int): char =
 let
