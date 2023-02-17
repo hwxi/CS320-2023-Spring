@@ -86,7 +86,7 @@ See MySolution/assign04-03.sml for more details.
 (*
 //
 Assign04-04:
-HX-2023-02-16: 30 points
+HX-2023-02-16: 30 points + 20 bonus points
 //
 Here is an implementation of the famous 8-queen puzzle:
 https://ats-lang.sourceforge.net/DOCUMENT/INT2PROGINATS/HTML/x631.html

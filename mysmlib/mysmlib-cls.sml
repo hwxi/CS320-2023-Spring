@@ -39,6 +39,12 @@ if claim
 
 (* ****** ****** *)
 
+val abs_int =
+fn(i0: int) =>
+if i0 >= 0 then i0 else ~i0
+
+(* ****** ****** *)
+
 fun
 pow_int_int
 (x: int, y: int): int =
