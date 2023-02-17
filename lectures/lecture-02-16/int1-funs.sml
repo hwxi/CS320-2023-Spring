@@ -26,7 +26,7 @@ in
 palindrome_test
 (String.implode
  (list_map(list_filter(cs, Char.isAlpha), Char.toLower)))
-end (* end of [palindrome_test(word)]: let *)
+end (* end of [palindrome2_test(word)]: let *)
 
 (* ****** ****** *)
 
