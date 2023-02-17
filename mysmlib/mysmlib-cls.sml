@@ -420,6 +420,14 @@ foreach_to_forall(list_foreach)(xs, test)
 (* ****** ****** *)
 
 val
+string_forall =
+fn( cs, test ) =>
+int1_forall
+(String.size(cs), fn(i) => test(String.sub(cs, i)))
+
+(* ****** ****** *)
+
+val
 list_get_at =
 fn(xs, i0) =>
 foreach_to_get_at(list_foreach)(xs, i0)
