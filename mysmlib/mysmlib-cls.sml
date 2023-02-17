@@ -293,20 +293,6 @@ end (* end of [foreach_to_forall]: let *)
 
 (* ****** ****** *)
 
-val
-int1_forall =
-fn(xs, test) =>
-foreach_to_forall(int1_foreach)(xs, test)
-
-(* ****** ****** *)
-
-val
-list_forall =
-fn(xs, test) =>
-foreach_to_forall(list_foreach)(xs, test)
-
-(* ****** ****** *)
-
 fun
 foreach_to_foldleft
 ( foreach
@@ -321,13 +307,6 @@ foreach
 ( xs
 , fn(x0) => res := fopr(!res, x0)); !res
 end (* end of [foreach_to_foldleft]: let *)
-
-(* ****** ****** *)
-
-val
-list_foldleft =
-fn(r0,xs,fopr) =>
-foreach_to_foldleft(list_foreach)(r0,xs,fopr)
 
 (* ****** ****** *)
 
@@ -427,6 +406,27 @@ foreach_to_foldleft(foreach)
 (* ****** ****** *)
 
 val
+int1_forall =
+fn(xs, test) =>
+foreach_to_forall(int1_foreach)(xs, test)
+
+(* ****** ****** *)
+
+val
+list_forall =
+fn(xs, test) =>
+foreach_to_forall(list_foreach)(xs, test)
+
+(* ****** ****** *)
+
+val
+list_get_at =
+fn(xs, i0) =>
+foreach_to_get_at(list_foreach)(xs, i0)
+
+(* ****** ****** *)
+
+val
 int1_listize =
 fn(xs) => foreach_to_listize(int1_foreach)(xs)
 val
@@ -447,6 +447,27 @@ fn(xs) => foreach_to_listize(string_foreach)(xs)
 val
 string_rlistize =
 fn(xs) => foreach_to_rlistize(string_foreach)(xs)
+
+(* ****** ****** *)
+
+val
+int1_foldleft =
+fn(r0,xs,fopr) =>
+foreach_to_foldleft(int1_foreach)(r0,xs,fopr)
+
+(* ****** ****** *)
+(*
+val
+list_foldleft =
+fn(r0,xs,fopr) =>
+foreach_to_foldleft(list_foreach)(r0,xs,fopr)
+*)
+(* ****** ****** *)
+
+val
+string_foldleft =
+fn(r0,xs,fopr) =>
+foreach_to_foldleft(string_foreach)(r0,xs,fopr)
 
 (* ****** ****** *)
 
