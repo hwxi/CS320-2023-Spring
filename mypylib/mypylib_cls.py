@@ -49,12 +49,56 @@ def list_rforeach(xs, work_func):
         work_func(x0)
     return None # work_func(i0) is done for all x0 in reversed(xs)
 
+def list_flistize(xs):
+    return foreach_to_rflistize(list_rforeach)(xs)
+
 def list_foldleft(xs, r0, fopr_func):
     return foreach_to_foldleft(list_foreach)(x0, r0, fopr_func)
 def list_foldright(xs, r0, fopr_func):
     return rforeach_to_foldright(list_rforeach)(x0, r0, fopr_func)
 
 #########################################################################
+
+# datatype 'a list =
+# nil | cons of ('a * 'a list)
+
+class flist:
+    ctag = -1
+    def get_ctag(self):
+        return self.ctag
+# end-of-class(flist)
+
+class flist_nil(flist):
+    def __init__(self):
+        self.ctag = 0
+        return None
+# end-of-class(flist_nil)
+
+class flist_cons(flist):
+    def __init__(self, cons1, cons2):
+        self.ctag = 1
+        self.cons1 = cons1
+        self.cons2 = cons2
+        return None
+    def get_cons1(self):
+        return self.cons1
+    def get_cons2(self):
+        return self.cons2
+# end-of-class(flist_cons)
+
+def flist_foreach(xs, work_func):
+    while(xs.ctag > 0):
+        x0 = xs.cons1
+        xs = xs.cons2
+        work_func(x0)
+    return None
+
+def flist_listize(xs):
+    return foreach_to_listize(flist_foreach)(xs)
+def flist_foldleft(xs, r0, fopr_func):
+    return foreach_to_foldleft(flist_foreach)(xs, r0, fopr_func)
+
+####################################################
 
 def forall_to_foreach(forall):
     def foreach(xs, work_func):
@@ -107,6 +151,43 @@ def rforeach_to_foldright(rforeach):
         rforeach(xs, work_func)
         return res
     return foldright # foreach-function is turned into foldleft-function
+
+#########################################################################
+
+def foreach_to_listize(foreach):
+    def listize(xs):
+        res = []
+        def work_func(x0):
+            nonlocal res
+            res.append(x0)
+            return None
+        foreach(xs, work_func)
+        return res
+    return listize # foreach-function is turned into listize-function
+
+def foreach_to_rlistize(foreach):
+    def rlistize(xs):
+        res = []
+        def work_func(x0):
+            nonlocal res
+            res.insert(0, x0)
+            return None
+        foreach(xs, work_func)
+        return res
+    return rlistize # foreach-function is turned into rlistize-function
+
+#########################################################################
+
+def foreach_to_rflistize(foreach):
+    def rflistize(xs):
+        res = flist_nil()
+        def work_func(x0):
+            nonlocal res
+            res = flist_cons(x0, res)
+            return None
+        foreach(xs, work_func)
+        return res
+    return rflistize # foreach-function is turned into rflistize-function
 
 #########################################################################
 
