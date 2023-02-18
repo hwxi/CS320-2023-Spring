@@ -1,4 +1,4 @@
-#########################################################################
+###########################################################################
 # (* ****** ****** *)
 # (*
 # HX-2023-02-17:
@@ -8,7 +8,7 @@
 # that is, it is shared by the class.
 # *)
 # (* ****** ****** *)
-#########################################################################
+###########################################################################
 
 def int1_forall(n0, test_func):
     i0 = 0
@@ -37,44 +37,24 @@ def int1_foldleft(xs, r0, fopr_func):
 def int1_foldright(xs, r0, fopr_func):
     return rforeach_to_foldright(int1_rforeach)(x0, r0, fopr_func)
 
-#########################################################################
-
-def list_foreach(xs, work_func):
-    for x0 in xs:
-        work_func(x0)
-    return None # work_func(x0) is done for all x0 in xs
-
-def list_rforeach(xs, work_func):
-    for x0 in reversed(xs):
-        work_func(x0)
-    return None # work_func(i0) is done for all x0 in reversed(xs)
-
-def list_flistize(xs):
-    return foreach_to_rflistize(list_rforeach)(xs)
-
-def list_foldleft(xs, r0, fopr_func):
-    return foreach_to_foldleft(list_foreach)(x0, r0, fopr_func)
-def list_foldright(xs, r0, fopr_func):
-    return rforeach_to_foldright(list_rforeach)(x0, r0, fopr_func)
-
-#########################################################################
+###########################################################################
 
 # datatype 'a list =
 # nil | cons of ('a * 'a list)
 
-class flist:
+class fnlist:
     ctag = -1
     def get_ctag(self):
         return self.ctag
-# end-of-class(flist)
+# end-of-class(fnlist)
 
-class flist_nil(flist):
+class fnlist_nil(fnlist):
     def __init__(self):
         self.ctag = 0
         return None
-# end-of-class(flist_nil)
+# end-of-class(fnlist_nil)
 
-class flist_cons(flist):
+class fnlist_cons(fnlist):
     def __init__(self, cons1, cons2):
         self.ctag = 1
         self.cons1 = cons1
@@ -84,21 +64,74 @@ class flist_cons(flist):
         return self.cons1
     def get_cons2(self):
         return self.cons2
-# end-of-class(flist_cons)
+# end-of-class(fnlist_cons)
 
-def flist_foreach(xs, work_func):
+def fnlist_foreach(xs, work_func):
     while(xs.ctag > 0):
         x0 = xs.cons1
         xs = xs.cons2
         work_func(x0)
     return None
 
-def flist_listize(xs):
-    return foreach_to_listize(flist_foreach)(xs)
-def flist_foldleft(xs, r0, fopr_func):
-    return foreach_to_foldleft(flist_foreach)(xs, r0, fopr_func)
+def fnlist_reverse(xs):
+    return \
+        fnlist_foldleft \
+        (xs, fnlist_nil(), lambda r0, x0: fnlist_cons(x0, r0))
+def fnlist_foldleft(xs, r0, fopr_func):
+    return \
+        foreach_to_foldleft(fnlist_foreach)(xs, r0, fopr_func)
+def fnlist_pylistize(xs):
+    return foreach_to_pylistize(fnlist_foreach)(xs)
+def fnlist_rpylistize(xs):
+    return foreach_to_rpylistize(fnlist_foreach)(xs)
 
-####################################################
+def fnlist_make_pylist(xs): return pylist_fnlistize(xs)
+
+###########################################################################
+
+def pylist_foreach(xs, work_func):
+    for x0 in xs:
+        work_func(x0)
+    return None # work_func(x0) is done for all x0 in xs
+
+def pylist_rforeach(xs, work_func):
+    for x0 in reversed(xs):
+        work_func(x0)
+    return None # work_func(i0) is done for all x0 in reversed(xs)
+
+def pylist_fnlistize(xs):
+    return foreach_to_rfnlistize(pylist_rforeach)(xs)
+
+def pylist_foldleft(xs, r0, fopr_func):
+    return foreach_to_foldleft(pylist_foreach)(x0, r0, fopr_func)
+def pylist_foldright(xs, r0, fopr_func):
+    return rforeach_to_foldright(pylist_rforeach)(x0, r0, fopr_func)
+
+def pylist_make_fnlist(xs):
+    ys = fnlist_rpylistize(xs); ys.reverse(); return ys
+
+###########################################################################
+
+def string_foreach(xs, work_func):
+    for x0 in xs:
+        work_func(x0)
+    return None # work_func(x0) is done for all x0 in xs
+def string_rforeach(xs, work_func):
+    for x0 in reversed(xs):
+        work_func(x0)
+    return None # work_func(i0) is done for all x0 in reversed(xs)
+
+def string_foldleft(xs, r0, fopr_func):
+    return foreach_to_foldleft(string_foreach)(x0, r0, fopr_func)
+def string_foldright(xs, r0, fopr_func):
+    return rforeach_to_foldright(string_rforeach)(x0, r0, fopr_func)
+
+def string_pylistize(xs):
+    return foreach_to_pylistize(string_foreach)(xs)
+def string_rpylistize(xs):
+    return foreach_to_rpylistize(string_foreach)(xs)
+
+###########################################################################
 
 def forall_to_foreach(forall):
     def foreach(xs, work_func):
@@ -109,7 +142,7 @@ def forall_to_foreach(forall):
         return None
     return foreach # forall-function is turned into foreach-function
 
-#########################################################################
+###########################################################################
 
 def foreach_to_forall(foreach):
     class FalseExn(Exception):
@@ -128,7 +161,7 @@ def foreach_to_forall(foreach):
             return False
     return forall # foreach-function is turned into forall-function
 
-#########################################################################
+###########################################################################
 
 def foreach_to_foldleft(foreach):
     def foldleft(xs, r0, fopr_func):
@@ -152,10 +185,10 @@ def rforeach_to_foldright(rforeach):
         return res
     return foldright # foreach-function is turned into foldleft-function
 
-#########################################################################
+###########################################################################
 
-def foreach_to_listize(foreach):
-    def listize(xs):
+def foreach_to_pylistize(foreach):
+    def pylistize(xs):
         res = []
         def work_func(x0):
             nonlocal res
@@ -163,10 +196,10 @@ def foreach_to_listize(foreach):
             return None
         foreach(xs, work_func)
         return res
-    return listize # foreach-function is turned into listize-function
+    return pylistize # foreach-function is turned into pylistize-function
 
-def foreach_to_rlistize(foreach):
-    def rlistize(xs):
+def foreach_to_rpylistize(foreach):
+    def rpylistize(xs):
         res = []
         def work_func(x0):
             nonlocal res
@@ -174,21 +207,21 @@ def foreach_to_rlistize(foreach):
             return None
         foreach(xs, work_func)
         return res
-    return rlistize # foreach-function is turned into rlistize-function
+    return rpylistize # foreach-function is turned into rpylistize-function
 
-#########################################################################
+###########################################################################
 
-def foreach_to_rflistize(foreach):
-    def rflistize(xs):
-        res = flist_nil()
+def foreach_to_rfnlistize(foreach):
+    def rfnlistize(xs):
+        res = fnlist_nil()
         def work_func(x0):
             nonlocal res
-            res = flist_cons(x0, res)
+            res = fnlist_cons(x0, res)
             return None
         foreach(xs, work_func)
         return res
-    return rflistize # foreach-function is turned into rflistize-function
+    return rfnlistize # foreach-function is turned into rfnlistize-function
 
-#########################################################################
+###########################################################################
 
-######################## end of [mypylib-cls.py] ########################
+######################### end of [mypylib-cls.py] #########################
