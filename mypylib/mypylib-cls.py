@@ -32,4 +32,23 @@ def forall_to_foreach(forall):
 
 #########################################################################
 
+def foreach_to_forall(foreach):
+    class FalseExn(Exception):
+        def __init_(self):
+            return None
+    def forall(xs, test_func):
+        def work_func(x0):
+            if test_func(x0):
+                return None
+            else:
+                raise FalseExn
+        try:
+            foreach(xs, work_func)
+            return True
+        except FalseExn:
+            return False
+    return forall # foreach-function is turned into forall-function
+
+#########################################################################
+
 ######################## end of [mypylib-cls.py] ########################
