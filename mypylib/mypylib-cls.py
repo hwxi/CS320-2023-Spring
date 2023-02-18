@@ -28,6 +28,8 @@ def forall_to_foreach(forall):
             return True
         forall(xs, test_func)
         return None
-    return foreach # forall-function is turned into a foreach-function
+    return foreach # forall-function is turned into foreach-function
+
+#########################################################################
 
 ######################## end of [mypylib-cls.py] ########################
