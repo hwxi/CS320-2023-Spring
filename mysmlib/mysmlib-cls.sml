@@ -163,13 +163,13 @@ case xs of
 
 fun
 list_reduce_left
-( r0: 'r, xs: 'a list
-, fopr: 'r * 'a -> 'r): 'r =
+( xs: 'a list
+, r0: 'r, fopr: 'r * 'a -> 'r): 'r =
 (
 case xs of
   nil => r0
 | x1 :: xs =>
-  list_reduce_left(fopr(r0, x1), xs, fopr)
+  list_reduce_left(xs, fopr(r0, x1), fopr)
 )
 
 (* ****** ****** *)
@@ -224,7 +224,7 @@ list_foreach = (* a.k.a. 'list_app' *)
 fn
 ( xs: 'a list
 , work: 'a -> unit) =>
-list_reduce_left((), xs, fn(r, x) => work(x))
+list_reduce_left(xs, (), fn(r, x) => work(x))
 
 (* ****** ****** *)
 
@@ -312,8 +312,8 @@ foreach_to_foldleft
 ( foreach
 : ('xs * ('x0 -> unit)) -> unit
 )
-: ('r0 * 'xs * ('r0*'x0 -> 'r0)) -> 'r0 =
-fn(r0, xs, fopr) =>
+: ('xs * 'r0 * ('r0*'x0 -> 'r0)) -> 'r0 =
+fn(xs, r0, fopr) =>
 let
 val res = ref(r0)
 in
@@ -331,7 +331,7 @@ foreach:
 ('xs*('x0->unit))->unit): 'xs -> int =
 fn(xs) =>
 (foreach_to_foldleft
- (foreach)(0, xs, fn(r0, x0) => r0 + 1))
+ (foreach)(xs, 0, fn(r0, x0) => r0 + 1))
 
 (* ****** ****** *)
 
@@ -349,7 +349,7 @@ in (*let*)
 let
 val r0 =
 foldleft
-( 0, xs
+( xs, 0
 , fn(r0, x0) =>
   if i0 = r0 then
   raise Found(x0) else r0+1) in raise Subscript
@@ -369,7 +369,7 @@ fn(xs) =>
 list_reverse
 (
 foreach_to_foldleft
-(foreach)(nil, xs, fn(r0, x0) => x0 :: r0)))
+(foreach)(xs, nil, fn(r0, x0) => x0 :: r0)))
 
 (* ****** ****** *)
 
@@ -380,7 +380,7 @@ foreach:
 ('xs*('x0->unit))->unit): 'xs -> 'x0 list =
 fn(xs) =>
 (foreach_to_foldleft
- (foreach)(nil, xs, fn(r0, x0) => x0 :: r0))
+ (foreach)(xs, nil, fn(r0, x0) => x0 :: r0))
 
 (* ****** ****** *)
 
@@ -397,7 +397,7 @@ fn(xs, fopr) =>
 list_reverse
 (
 foreach_to_foldleft
-(foreach)(nil, xs, fn(r0, x0) => fopr(x0) :: r0)))
+(foreach)(xs, nil, fn(r0, x0) => fopr(x0) :: r0)))
 
 (* ****** ****** *)
 
@@ -414,7 +414,7 @@ fn(xs, test) =>
 list_reverse
 (
 foreach_to_foldleft(foreach)
-( nil, xs
+( xs, nil
 , fn(r0, x0) => if test(x0) then x0 :: r0 else r0)))
 
 (* ****** ****** *)
@@ -479,7 +479,7 @@ foreach_to_foldleft(int1_foreach)(r0,xs,fopr)
 val
 int1_foldright =
 fn(xs,r0,fopr) =>
-int1_foldleft(r0, xs, fn(r0, x0) => fopr(xs-1-x0, r0))
+int1_foldleft(xs, r0, fn(r0, x0) => fopr(xs-1-x0, r0))
 
 (* ****** ****** *)
 
@@ -498,12 +498,12 @@ val
 string_foldleft =
 fn( r0,cs,fopr ) =>
 int1_foldleft
-(r0, String.size(cs), fn(r0, i0) => fopr(r0, String.sub(cs, i0)))
+(String.size(cs), r0, fn(r0, i0) => fopr(r0, String.sub(cs, i0)))
 val
 string_foldright =
 fn( cs,r0,fopr ) =>
 int1_foldright
-(r0, String.size(cs), fn(i0, r0) => fopr(String.sub(cs, i0), r0))
+(String.size(cs), r0, fn(i0, r0) => fopr(String.sub(cs, i0), r0))
 
 (* ****** ****** *)
 

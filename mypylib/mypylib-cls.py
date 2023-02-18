@@ -32,6 +32,24 @@ def int1_rforeach(n0, work_func):
         i0 = (i0 + 1)
     return None # work_func(i0) is done for all n0 > i0 >= 0
 
+def int1_foldleft(xs, r0, fopr_func):
+    return foreach_to_foldleft(int1_foreach)(x0, r0, fopr_func)
+
+#########################################################################
+
+def list_foreach(xs, work_func):
+    for x0 in xs:
+        work_func(x0)
+    return None # work_func(x0) is done for all x0 in xs
+
+def list_rforeach(xs, work_func):
+    for x0 in reversed(xs):
+        work_func(x0)
+    return None # work_func(i0) is done for all x0 in reversed(xs)
+
+def list_foldleft(xs, r0, fopr_func):
+    return foreach_to_foldleft(list_foreach)(x0, r0, fopr_func)
+
 #########################################################################
 
 def forall_to_foreach(forall):
@@ -65,7 +83,7 @@ def foreach_to_forall(foreach):
 #########################################################################
 
 def foreach_to_foldleft(foreach):
-    def foldleft(r0, xs, fopr_func):
+    def foldleft(xs, r0, fopr_func):
         res = r0
         def work_func(x0):
             nonlocal res
