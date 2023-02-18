@@ -29,4 +29,12 @@ end
 
 (* ****** ****** *)
 
+val
+transpose =
+fn(xss) =>
+foreach_to_map_list(int1_foreach)
+(length(hd(xss)), fn(i) => list_map(xss, fn(xs) => list_get_at(xs, i)))
+
+(* ****** ****** *)
+
 (* end of [CS320-2023-Spring-assign04-01.sml] *)

@@ -211,11 +211,11 @@ val list_foldright = list_reduce_right
 val
 list_reverse = (* a.k.a. List.rev *)
 fn(xs: 'a list) =>
-list_reduce_left([], xs, fn(r, x) => x :: r)
+list_reduce_left(xs, [], fn(r, x) => x :: r)
 val
 list_rappend =
 fn(xs: 'a list, ys: 'a list) =>
-list_reduce_left(ys, xs, fn(r, x) => x :: r)
+list_reduce_left(xs, ys, fn(r, x) => x :: r)
 
 (* ****** ****** *)
 
@@ -504,6 +504,13 @@ string_foldright =
 fn( cs,r0,fopr ) =>
 int1_foldright
 (String.size(cs), r0, fn(i0, r0) => fopr(String.sub(cs, i0), r0))
+
+(* ****** ****** *)
+
+val
+int1_map_list =
+fn(xs,fopr) =>
+foreach_to_map_list(int1_foreach)(xs,fopr)
 
 (* ****** ****** *)
 
