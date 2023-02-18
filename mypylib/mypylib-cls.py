@@ -34,6 +34,8 @@ def int1_rforeach(n0, work_func):
 
 def int1_foldleft(xs, r0, fopr_func):
     return foreach_to_foldleft(int1_foreach)(x0, r0, fopr_func)
+def int1_foldright(xs, r0, fopr_func):
+    return rforeach_to_foldright(int1_rforeach)(x0, r0, fopr_func)
 
 #########################################################################
 
@@ -49,6 +51,8 @@ def list_rforeach(xs, work_func):
 
 def list_foldleft(xs, r0, fopr_func):
     return foreach_to_foldleft(list_foreach)(x0, r0, fopr_func)
+def list_foldright(xs, r0, fopr_func):
+    return rforeach_to_foldright(list_rforeach)(x0, r0, fopr_func)
 
 #########################################################################
 
@@ -92,6 +96,17 @@ def foreach_to_foldleft(foreach):
         foreach(xs, work_func)
         return res
     return foldleft # foreach-function is turned into foldleft-function
+
+def rforeach_to_foldright(rforeach):
+    def foldright(xs, r0, fopr_func):
+        res = r0
+        def work_func(x0):
+            nonlocal res
+            res = fopr_func(x0, res)
+            return None
+        rforeach(xs, work_func)
+        return res
+    return foldright # foreach-function is turned into foldleft-function
 
 #########################################################################
 
