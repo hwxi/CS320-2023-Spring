@@ -11,7 +11,7 @@ in (* in-of-local *)
 fun
 power
 (x: int, y: int): int =
-int1_foldleft(1, y, fn(r, _) => r * x)
+int1_foldleft(y, 1, fn(r, _) => r * x)
 
 (* ****** ****** *)
 
