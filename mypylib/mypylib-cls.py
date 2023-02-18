@@ -11,13 +11,26 @@
 #########################################################################
 
 def int1_forall(n0, test_func):
-    for i0 in range(n0):
-        if not test_func(i0): return False
+    i0 = 0
+    while(i0 < n0):
+        if not test_func(i0):
+            return False
+        i0 = (i0 + 1)
     return True # test_func(i0)==True for all 0 <= i0 < n0
 
 def int1_foreach(n0, work_func):
-    for i0 in range(n0): work_func(i0)
+    i0 = 0
+    while(i0 < n0):
+        work_func(i0)
+        i0 = (i0 + 1)
     return None # work_func(i0) is done for all 0 <= i0 < n0
+
+def int1_rforeach(n0, work_func):
+    i0 = 0
+    while(i0 < n0):
+        work_func(n0-1-i0)
+        i0 = (i0 + 1)
+    return None # work_func(i0) is done for all n0 > i0 >= 0
 
 #########################################################################
 
@@ -48,6 +61,19 @@ def foreach_to_forall(foreach):
         except FalseExn:
             return False
     return forall # foreach-function is turned into forall-function
+
+#########################################################################
+
+def foreach_to_foldleft(foreach):
+    def foldleft(r0, xs, fopr_func):
+        res = r0
+        def work_func(x0):
+            nonlocal res
+            res = fopr_func(res, x0)
+            return None
+        foreach(xs, work_func)
+        return res
+    return foldleft # foreach-function is turned into foldleft-function
 
 #########################################################################
 
