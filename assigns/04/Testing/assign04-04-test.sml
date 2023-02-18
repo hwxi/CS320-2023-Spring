@@ -38,7 +38,7 @@ val
 print_board = (fn(bd) => board_foreach(bd, fn(i) => print_row(i)))
 in
 list_foldleft
-( 0, theSolutions
+( theSolutions, 0
 , fn(r, sol) =>
   (print("Solution #"^Int.toString(r+1)^"\n"); print_board(sol); print("\n"); r+1))
 end (* end of [queen8_puzzle_solve_show]: let *)
