@@ -435,7 +435,7 @@ foreach_to_forall(list_foreach)(xs, test)
 
 val
 string_forall =
-fn( cs, test ) =>
+fn(cs, test) =>
 int1_forall
 (String.size(cs), fn(i) => test(String.sub(cs, i)))
 
@@ -450,25 +450,41 @@ foreach_to_get_at(list_foreach)(xs, i0)
 
 val
 int1_listize =
-fn(xs) => foreach_to_listize(int1_foreach)(xs)
+fn(xs) =>
+foreach_to_listize(int1_foreach)(xs)
 val
 int1_rlistize =
-fn(xs) => foreach_to_rlistize(int1_foreach)(xs)
+fn(xs) =>
+foreach_to_rlistize(int1_foreach)(xs)
 
 (* ****** ****** *)
 
 val
 list_rlistize =
-fn(xs) => foreach_to_rlistize(list_foreach)(xs)
+fn(xs) =>
+foreach_to_rlistize(list_foreach)(xs)
 
 (* ****** ****** *)
 
 val
 string_listize =
-fn(xs) => foreach_to_listize(string_foreach)(xs)
+fn(xs) =>
+foreach_to_listize(string_foreach)(xs)
 val
 string_rlistize =
-fn(xs) => foreach_to_rlistize(string_foreach)(xs)
+fn(xs) =>
+foreach_to_rlistize(string_foreach)(xs)
+
+(* ****** ****** *)
+
+val
+int1_map_list =
+fn(xs,fopr) =>
+foreach_to_map_list(int1_foreach)(xs,fopr)
+val
+string_map_list =
+fn(xs,fopr) =>
+foreach_to_map_list(string_foreach)(xs,fopr)
 
 (* ****** ****** *)
 
@@ -504,13 +520,6 @@ string_foldright =
 fn( cs,r0,fopr ) =>
 int1_foldright
 (String.size(cs), r0, fn(i0, r0) => fopr(String.sub(cs, i0), r0))
-
-(* ****** ****** *)
-
-val
-int1_map_list =
-fn(xs,fopr) =>
-foreach_to_map_list(int1_foreach)(xs,fopr)
 
 (* ****** ****** *)
 
