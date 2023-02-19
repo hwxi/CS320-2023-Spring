@@ -34,6 +34,20 @@ val p3 = fn(x) => (x = 2)
 val p4 = fn(x) => (x = 6)
 val ( ) =
 assert320_some
+(list_forall(xs, p1) = true, "assign04-03-test:01")
+val ( ) =
+assert320_some
+(list_exists(xs, p2) = true, "assign04-03-test:02")
+val ( ) =
+assert320_some
+(list_exists
+ (xs, fn(x) => not(p1(x))) = false, "assign04-03-test:03")
+val ( ) =
+assert320_some
+(list_forall
+ (xs, fn(x) => not(p2(x))) = false, "assign04-03-test:04")
+val ( ) =
+assert320_some
 (list_forall(xs, p1) = list_forall'(xs, p1), "assign04-03-test:1")
 val ( ) =
 assert320_some
