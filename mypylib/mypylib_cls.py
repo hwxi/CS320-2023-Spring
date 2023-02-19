@@ -66,6 +66,18 @@ class fnlist_cons(fnlist):
         return self.cons2
 # end-of-class(fnlist_cons)
 
+def fnlist_print(xs):
+    nx = 0
+    sep = ";"
+    print("[",end='')
+    while(xs.ctag > 0):
+        if (nx > 0):
+            print(sep,end='')        
+        print(xs.cons1,end='')
+        nx = nx + 1; xs = xs.cons2
+    print("]", end='')
+# end-of-[fnlist_print]
+
 def fnlist_foreach(xs, work_func):
     while(xs.ctag > 0):
         x0 = xs.cons1
