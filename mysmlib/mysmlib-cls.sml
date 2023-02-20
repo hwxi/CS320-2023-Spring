@@ -515,7 +515,7 @@ foreach_to_map_list(string_foreach)(xs,fopr)
 val
 int1_foldleft =
 fn(xs,r0,fopr) =>
-foreach_to_foldleft(int1_foreach)(r0,xs,fopr)
+foreach_to_foldleft(int1_foreach)(xs,r0,fopr)
 val
 int1_foldright =
 fn(xs,r0,fopr) =>
