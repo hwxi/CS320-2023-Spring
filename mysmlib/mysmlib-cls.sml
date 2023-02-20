@@ -490,7 +490,7 @@ foreach_to_map_list(string_foreach)(xs,fopr)
 
 val
 int1_foldleft =
-fn(r0,xs,fopr) =>
+fn(xs,r0,fopr) =>
 foreach_to_foldleft(int1_foreach)(r0,xs,fopr)
 val
 int1_foldright =
@@ -501,7 +501,7 @@ int1_foldleft(xs, r0, fn(r0, x0) => fopr(xs-1-x0, r0))
 
 val
 list_foldleft =
-fn(r0,xs,fopr) =>
+fn(xs,r0,fopr) =>
 foreach_to_foldleft(list_foreach)(r0,xs,fopr)
 val
 list_foldright =
@@ -512,12 +512,12 @@ foreach_to_foldleft(list_foreach)(list_reverse(xs), r0,fopr)
 
 val
 string_foldleft =
-fn( r0,cs,fopr ) =>
+fn(cs,r0,fopr) =>
 int1_foldleft
 (String.size(cs), r0, fn(r0, i0) => fopr(r0, String.sub(cs, i0)))
 val
 string_foldright =
-fn( cs,r0,fopr ) =>
+fn(cs,r0,fopr) =>
 int1_foldright
 (String.size(cs), r0, fn(i0, r0) => fopr(String.sub(cs, i0), r0))
 

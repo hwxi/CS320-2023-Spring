@@ -212,6 +212,20 @@ def rforeach_to_foldright(rforeach):
 
 ###########################################################################
 
+def foreach_to_iforeach(foreach):
+    def iforeach(xs, iwork_func):
+        i0 = 0
+        def work_func(x0):
+            nonlocal i0
+            iwork_func(i0, x0)
+            i0 = i0 + 1
+            return None
+        foreach(xs, work_func)
+        return None
+    return iforeach # foreach-function is turned into iforeach-function
+
+###########################################################################
+
 def foreach_to_pylistize(foreach):
     def pylistize(xs):
         res = []
