@@ -219,6 +219,30 @@ list_reduce_left(xs, ys, fn(r, x) => x :: r)
 
 (* ****** ****** *)
 
+fun
+list_forall
+( xs: 'a list
+, test: 'a -> bool): bool =
+(
+case xs of
+  nil => true
+| x1 :: xs =>
+  test(x1) andalso list_forall(xs, test)
+)
+
+fun
+list_exists
+( xs: 'a list
+, test: 'a -> bool): bool =
+(
+case xs of
+  nil => false
+| x1 :: xs =>
+  test(x1) orelse list_exists(xs, test)
+)
+
+(* ****** ****** *)
+
 val
 list_foreach = (* a.k.a. 'list_app' *)
 fn
@@ -425,12 +449,12 @@ fn(xs, test) =>
 foreach_to_forall(int1_foreach)(xs, test)
 
 (* ****** ****** *)
-
+(*
 val
 list_forall =
 fn(xs, test) =>
 foreach_to_forall(list_foreach)(xs, test)
-
+*)
 (* ****** ****** *)
 
 val
@@ -502,11 +526,11 @@ int1_foldleft(xs, r0, fn(r0, x0) => fopr(xs-1-x0, r0))
 val
 list_foldleft =
 fn(xs,r0,fopr) =>
-foreach_to_foldleft(list_foreach)(r0,xs,fopr)
+foreach_to_foldleft(list_foreach)(xs,r0,fopr)
 val
 list_foldright =
 fn(xs,r0,fopr) =>
-foreach_to_foldleft(list_foreach)(list_reverse(xs), r0,fopr)
+foreach_to_foldleft(list_foreach)(list_reverse(xs),r0,fopr)
 
 (* ****** ****** *)
 
