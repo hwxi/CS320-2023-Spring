@@ -33,7 +33,7 @@ print_row =
 fn(i) =>
 (
 int1_foreach
-(N, fn(j) => if i = j+1 then print"Q " else print". "); print"\n")
+(8, fn(j) => if i = j+1 then print"Q " else print". "); print"\n")
 val
 print_board = (fn(bd) => board_foreach(bd, fn(i) => print_row(i)))
 in
