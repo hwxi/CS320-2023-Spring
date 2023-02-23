@@ -547,4 +547,15 @@ int1_foldright
 
 (* ****** ****** *)
 
+fun
+list_tabulate
+( n0: int
+, fopr: int -> 'a): 'a list =
+list_reverse
+(
+int1_foldleft
+(n0, [], fn(xs, i) => fopr(i) :: xs))
+
+(* ****** ****** *)
+
 (* end of [BUCASCS320-2023-Spring-mysmlib-cls.sml] *)
