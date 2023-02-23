@@ -558,4 +558,25 @@ int1_foldleft
 
 (* ****** ****** *)
 
+type
+('xs, 'x0) foreach_t =
+'xs * ('x0 -> unit) -> unit
+type
+('xs, 'x0) iforeach_t =
+'xs * (int * 'x0 -> unit) -> unit
+
+(* ****** ****** *)
+
+fun
+foreach_to_iforeach
+( foreach
+: ('xs, 'x0) foreach_t): ('xs, 'x0) iforeach_t =
+fn(xs, iwork) =>
+let
+val _ =
+foreach_to_foldleft(foreach)
+(xs, 0, fn(p, x) => (iwork(p, x); p+1)) in () end
+
+(* ****** ****** *)
+
 (* end of [BUCASCS320-2023-Spring-mysmlib-cls.sml] *)

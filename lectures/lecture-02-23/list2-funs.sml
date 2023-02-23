@@ -43,12 +43,27 @@ list2_zip(int1_listize(list_length(xs)), xs)
 
 (* ****** ****** *)
 
+(*
+HX: Row-major
+*)
 fun
-list2_cross
+list2_cross_row
 ( xs: 'a list
 , ys: 'b list): ('a*'b) list =
 list_concat
 (list_map(xs, fn(x0) => list_map(ys, fn(y0) => (x0, y0))))
+
+(* ****** ****** *)
+
+(*
+HX: Column-major
+*)
+fun
+list2_cross_col
+( xs: 'a list
+, ys: 'b list): ('a*'b) list =
+list_concat
+(list_map(ys, fn(x0) => list_map(xs, fn(y0) => (x0, y0))))
 
 (* ****** ****** *)
 
