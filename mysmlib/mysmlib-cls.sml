@@ -655,4 +655,39 @@ fn(xs, r0, ifopr) =>
 foreach_to_ifoldleft(vector_foreach)(xs, r0, ifopr)
 (* ****** ****** *)
 
+fun
+list_zip2
+( xs: 'a list
+, ys: 'b list): ('a * 'b) list =
+(
+case xs of
+  nil => nil
+| x1 :: xs =>
+  (
+  case ys of
+    nil => nil
+  | y1 :: ys =>
+    (x1, y1) :: list_zip2(xs, ys))
+) (* end of [list_zip2(xs, ys)]: case *)
+
+(* ****** ****** *)
+
+fun
+list_z2map
+( xs: 'a list
+, ys: 'b list
+, fopr: 'a * 'b -> 'c): 'c list =
+(
+case xs of
+  nil => nil
+| x1 :: xs =>
+  (
+  case ys of
+    nil => nil
+  | y1 :: ys =>
+    fopr(x1, y1) :: list_z2map(xs, ys, fopr))
+) (* end of [list_z2map(xs, ys, fopr)]: case *)
+
+(* ****** ****** *)
+
 (* end of [BUCASCS320-2023-Spring-mysmlib-cls.sml] *)
