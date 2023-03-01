@@ -33,9 +33,9 @@ def int1_rforeach(n0, work_func):
     return None # work_func(i0) is done for all n0 > i0 >= 0
 
 def int1_foldleft(xs, r0, fopr_func):
-    return foreach_to_foldleft(int1_foreach)(x0, r0, fopr_func)
+    return foreach_to_foldleft(int1_foreach)(xs, r0, fopr_func)
 def int1_foldright(xs, r0, fopr_func):
-    return rforeach_to_foldright(int1_rforeach)(x0, r0, fopr_func)
+    return rforeach_to_foldright(int1_rforeach)(xs, r0, fopr_func)
 
 ###########################################################################
 
