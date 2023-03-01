@@ -68,7 +68,7 @@ class fnlist_cons(fnlist):
 
 def fnlist_print(xs):
     nx = 0
-    sep = ";"
+    sep = "; "
     print("[",end='')
     while(xs.ctag > 0):
         if (nx > 0):
@@ -170,6 +170,17 @@ def string_rpylistize(xs):
 
 def string_make_pylist(xs): return "".join(xs)
 def string_make_fnlist(xs): return "".join(fnlist_pylistize(xs))
+
+###########################################################################
+
+def string_iforeach(xs, iwork_func):
+    return foreach_to_iforeach(string_foreach)(xs, iwork_func)
+
+def string_imap_pylist(xs, ifopr_func):
+    return iforeach_to_imap_pylist(string_iforeach)(xs, ifopr_func)
+
+def string_ifilter_pylist(xs, itest_func):
+    return iforeach_to_ifilter_pylist(string_iforeach)(xs, itest_func)
 
 ###########################################################################
 
