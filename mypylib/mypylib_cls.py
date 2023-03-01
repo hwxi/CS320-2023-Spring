@@ -125,9 +125,9 @@ def pylist_fnlistize(xs):
     return foreach_to_rfnlistize(pylist_rforeach)(xs)
 
 def pylist_foldleft(xs, r0, fopr_func):
-    return foreach_to_foldleft(pylist_foreach)(x0, r0, fopr_func)
+    return foreach_to_foldleft(pylist_foreach)(xs, r0, fopr_func)
 def pylist_foldright(xs, r0, fopr_func):
-    return rforeach_to_foldright(pylist_rforeach)(x0, r0, fopr_func)
+    return rforeach_to_foldright(pylist_rforeach)(xs, r0, fopr_func)
 
 def pylist_make_fnlist(xs):
     ys = fnlist_rpylistize(xs); ys.reverse(); return ys
@@ -144,9 +144,9 @@ def string_rforeach(xs, work_func):
     return None # work_func(i0) is done for all x0 in reversed(xs)
 
 def string_foldleft(xs, r0, fopr_func):
-    return foreach_to_foldleft(string_foreach)(x0, r0, fopr_func)
+    return foreach_to_foldleft(string_foreach)(xs, r0, fopr_func)
 def string_foldright(xs, r0, fopr_func):
-    return rforeach_to_foldright(string_rforeach)(x0, r0, fopr_func)
+    return rforeach_to_foldright(string_rforeach)(xs, r0, fopr_func)
 
 def string_pylistize(xs):
     return foreach_to_pylistize(string_foreach)(xs)
