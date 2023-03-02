@@ -12,13 +12,14 @@ Given a list of distnct integers xs,
 list_nchoose2(xs) returns a list of all
 the pairs (x1, x2) such that x1 and x2 are
 two elements from xs satisfying x1 <= x2.
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 //
 For instance,
-list_nchoose([1,3,2]) =
+list_nchoose2([1,3,2]) =
 [ (1,3), (1,2), (2,3) ]
-list_nchoose([3,2,1]) =
+list_nchoose2([3,2,1]) =
 [ (2,3), (1,3), (1,2) ]
-list_nchoose([3,2,1,4]) =
+list_nchoose2([3,2,1,4]) =
 [(2,3),(1,3),(1,2),(1,4),(2,4),(3,4)]
 Note that the returned list is treated as a
 set, and the order of the elements in the list

@@ -48,9 +48,10 @@ triangle 2 = [[1], [1, 1], [1, 2, 1]]
 triangle 3 = [[1], [1, 1], [1, 2, 1], [1, 3, 3, 1]]
 triangle 4 = [[1], [1, 1], [1, 2, 1], [1, 3, 3, 1], [1, 4, 6, 4, 1]]
 ...
-triangle n = ??
+triangle n = ???
 
-Hint: You might want a helper function to compute the next row from the previous.
+Hint: You might want a helper function to compute the current row from
+the previous.
 
 *)
 
