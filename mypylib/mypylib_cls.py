@@ -46,7 +46,29 @@ class fnlist:
     ctag = -1
     def get_ctag(self):
         return self.ctag
+    def __iter__(self):
+        return fnlist_iter(self)
+    def __reversed__(self):
+        return fnlist_reverse(self)
 # end-of-class(fnlist)
+
+###########################################################################
+
+class fnlist_iter:
+    def __iter__(self):
+        return self
+    def __init__(self, itms):
+        self.itms = itms
+    def __next__(self):
+        if (self.itms.ctag==0):
+            raise StopIteration
+        else:
+            itm1 = self.itms.cons1
+            self.itms = self.itms.cons2
+            return itm1
+    # end-of-[__next__]
+
+###########################################################################
 
 class fnlist_nil(fnlist):
     def __init__(self):
@@ -65,6 +87,8 @@ class fnlist_cons(fnlist):
     def get_cons2(self):
         return self.cons2
 # end-of-class(fnlist_cons)
+
+###########################################################################
 
 def fnlist_print(xs):
     nx = 0
