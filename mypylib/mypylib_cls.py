@@ -292,9 +292,10 @@ def foreach_to_rpylistize(foreach):
         res = []
         def work_func(x0):
             nonlocal res
-            res.insert(0, x0)
+            res.append(x0)
             return None
         foreach(xs, work_func)
+        res.reverse()
         return res
     return rpylistize # foreach-function is turned into rpylistize-function
 
