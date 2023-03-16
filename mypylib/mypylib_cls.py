@@ -357,7 +357,7 @@ def foreach_to_filter_pylist(foreach):
 def foreach_to_filter_fnlist(foreach):
     return \
         lambda xs, test_func: \
-        fnlist_make_pylist(foreach_to_filter_fnlist(foreach)(xs, test_func))
+        fnlist_make_pylist(foreach_to_filter_pylist(foreach)(xs, test_func))
 
 ###########################################################################
 
@@ -375,7 +375,7 @@ def iforeach_to_imap_pylist(iforeach):
 def iforeach_to_imap_fnlist(iforeach):
     return \
         lambda xs, ifopr_func: \
-        fnlist_make_pylist(iforeach_to_map_fnlist(iforeach)(xs, ifopr_func))
+        fnlist_make_pylist(iforeach_to_imap_pylist(iforeach)(xs, ifopr_func))
 
 def iforeach_to_imap_rfnlist(iforeach):
     def imap_rfnlist(xs, ifopr_func):
