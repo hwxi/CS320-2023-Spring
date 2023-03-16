@@ -32,6 +32,11 @@ def int1_rforeach(n0, work_func):
         i0 = (i0 + 1)
     return None # work_func(i0) is done for all n0 > i0 >= 0
 
+def int1_map_fnlist(xs, fopr_func):
+    return foreach_to_map_fnlist(int1_foreach)(xs, fopr_func)
+def int1_map_pylist(xs, fopr_func):
+    return foreach_to_map_pylist(int1_foreach)(xs, fopr_func)
+
 def int1_foldleft(xs, r0, fopr_func):
     return foreach_to_foldleft(int1_foreach)(xs, r0, fopr_func)
 def int1_foldright(xs, r0, fopr_func):
@@ -135,7 +140,7 @@ def pylist_rforeach(xs, work_func):
         work_func(x0)
     return None # work_func(i0) is done for all x0 in reversed(xs)
 
-def pylist_map(xs, fopr_func):
+def pylist_make_map(xs, fopr_func):
     return foreach_to_map_pylist(pylist_foreach)(xs, fopr_func)
 def pylist_map_pylist(xs, fopr_func):
     return foreach_to_map_pylist(pylist_foreach)(xs, fopr_func)
@@ -161,12 +166,12 @@ def pylist_make_fnlist(xs):
 def pylist_iforeach(xs, iwork_func):
     return foreach_to_iforeach(pylist_foreach)(xs, iwork_func)
 
-def pylist_imap(xs, ifopr_func):
+def pylist_make_imap(xs, ifopr_func):
     return iforeach_to_imap_pylist(pylist_iforeach)(xs, ifopr_func)
 def pylist_imap_pylist(xs, ifopr_func):
     return iforeach_to_imap_pylist(pylist_iforeach)(xs, ifopr_func)
 
-def pylist_ifilter(xs, itest_func):
+def pylist_make_ifilter(xs, itest_func):
     return iforeach_to_ifilter_pylist(pylist_iforeach)(xs, itest_func)
 def pylist_ifilter_pylist(xs, itest_func):
     return iforeach_to_ifilter_pylist(pylist_iforeach)(xs, itest_func)
