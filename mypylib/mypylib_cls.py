@@ -276,6 +276,22 @@ def foreach_to_iforeach(foreach):
 
 ###########################################################################
 
+def foreach_to_ifoldleft(foreach):
+    def ifoldleft(xs, r0, ifopr_func):
+        i0 = 0
+        res = r0
+        def work_func(x0):
+            nonlocal i0
+            nonlocal res
+            res = ifopr_func(res, i0, x0)
+            i0 = i0 + 1
+            return None
+        foreach(xs, work_func)
+        return res
+    return ifoldleft # foreach-function is turned into foldleft-function
+
+###########################################################################
+
 def foreach_to_pylistize(foreach):
     def pylistize(xs):
         res = []
