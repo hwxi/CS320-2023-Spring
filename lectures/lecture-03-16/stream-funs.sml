@@ -30,13 +30,26 @@ case xs of
 
 (*
 fun
-int1_streamize(n) = list_streamize(int1_listize(n))
+int1_streamize(n) =
+list_streamize(int1_listize(n))
 *)
+fun
+int1_streamize(n): int stream = fn () =>
+let
+  fun
+  helper(i): int strcon =
+  if
+  (i >= n)
+  then strcon_nil
+  else strcon_cons(i, helper(i+1)) in helper(0)
+end
+   
+(* ****** ****** *)
+
 fun
 int1_rstreamize(n): int stream = fn () =>
 if n > 0 then
-strcon_cons(n-1, int1_rstreamize(n-1)) else strcon_nil
-  
+strcon_cons(n-1, int1_rstreamize(n-1)) else strcon_nil  
 
 (* ****** ****** *)
 
