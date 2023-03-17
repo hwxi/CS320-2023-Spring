@@ -44,3 +44,6 @@ print\
 string_iforeach("123456789", lambda i, x: print("[",i,"]:", x))
 
 ########################################################################
+
+def string_length(xs):
+    return string_foldleft(xs, 0, lambda r0, x0: 1 + r0)
