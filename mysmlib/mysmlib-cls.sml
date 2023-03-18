@@ -714,4 +714,24 @@ list_concat
 
 (* ****** ****** *)
 
+(*
+HX-2023-03-16:
+Building combinators for lazy-evaluation
+*)
+
+(* ****** ****** *)
+
+fun
+int1_streamize(n): int stream = fn () =>
+let
+  fun
+  helper(i): int strcon =
+  if
+  (i >= n)
+  then strcon_nil
+  else strcon_cons(i, helper(i+1)) in helper(0)
+end
+
+(* ****** ****** *)
+
 (* end of [BUCASCS320-2023-Spring-mysmlib-cls.sml] *)

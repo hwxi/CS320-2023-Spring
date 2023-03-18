@@ -53,11 +53,16 @@ def save_color_image(image, filename, mode="PNG"):
     # return None
 
 ####################################################
-
+#
+# HX-2023-03-18:
+# This one is incorrect:
+# def grey_of_color(clr):
+#     (r0, b1, g2) = clr
+#     return round(0.299*r0+0.587*b1+0.114*g2)
 def grey_of_color(clr):
-    (r0, b1, g2) = clr
-    return round(0.299*r0+0.587*b1+0.114*g2)
-
+    (rr, gg, bb) = clr
+    return round(0.299*rr+0.587*gg+0.114*bb)
+#
 ####################################################
 
 def image_invert_grey(ximg):
