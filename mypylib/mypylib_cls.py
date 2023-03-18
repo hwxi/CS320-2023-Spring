@@ -209,6 +209,30 @@ def pylist_ifilter_pylist(xs, itest_func):
 
 ###########################################################################
 
+def pylist_iminimum(xs):
+    if not xs:
+        return (-1, None)    
+    imin = 0
+    xmin = xs[0]
+    for (i0, x1) in enumerate(xs[1:]):
+        if x1 < xmin:
+            xmin = x1
+            imin = i0 + 1
+    return (imin, xmin)
+
+def pylist_imaximum(xs):
+    if not xs:
+        return (-1, None)    
+    imax = 0
+    xmax = xs[0]
+    for (i0, x1) in enumerate(xs[1:]):
+        if x1 > xmax:
+            xmax = x1
+            imax = i0 + 1
+    return (imax, xmax)
+
+###########################################################################
+
 def string_foreach(xs, work_func):
     for x0 in xs:
         work_func(x0)
