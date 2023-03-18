@@ -47,8 +47,9 @@ def kernel_i2foldleft(kernel, ini, i2fopr_func):
 
 def kernel_fimage_apply(kernel, fimage):
     ini = 0
+    hsz = kernel.size // 2
     return kernel_i2foldleft\
-        (kernel, ini, lambda res, i0, j0, v0: res + fimage(i0, j0) * v0)
+        (kernel, ini, lambda res, i0, j0, v0: res + fimage(i0-hsz,j0-hsz) * v0)
 
 ##########################################################
 

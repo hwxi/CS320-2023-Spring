@@ -90,6 +90,16 @@ def image_make_i2map(image, i2fopr_func):
 
 ####################################################
 
+def image_i2filter_pylist(image, i2test_func):
+    ww = image.width
+    hh = image.height
+    res = []
+    for (ij, pix) in enumerate(image.pixlst):
+        if i2test_func(ij//ww, ij % ww, pix): res.append(pix)
+    return res # return
+
+####################################################
+
 def image_round_and_clip(image):
     return image_make_map(image, lambda pix: max(0, min(round(pix), 255)))
 
