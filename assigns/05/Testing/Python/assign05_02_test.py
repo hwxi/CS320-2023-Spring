@@ -28,5 +28,7 @@ assert "abcy" in words
 assert "abcz" in words
 assert not "abcd" in words
 ######################################################
+print("Assign05-02-test passed!")
+######################################################
 
 #### end of [CS320-2023-Spring-assign05_02_test.py] ####

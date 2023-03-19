@@ -31,5 +31,7 @@ imgvec.image_foreach\
 print("ptotal = ", ptotal)
 assert (ptotal == 58699911)
 ######################################################
+print("Assign05-03-test passed!")
+######################################################
 
 #### end of [CS320-2023-Spring-assign05_03_test.py] ####
