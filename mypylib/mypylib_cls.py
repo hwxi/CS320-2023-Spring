@@ -484,7 +484,7 @@ def iforeach_to_ifilter_pylist(iforeach):
 def iforeach_to_ifilter_fnlist(iforeach):
     return \
         lambda xs, itest_func: \
-        fnlist_make_pylist(iforeach_to_ifilter_fnlist(iforeach)(xs, itest_func))
+        fnlist_make_pylist(iforeach_to_ifilter_pylist(iforeach)(xs, itest_func))
 
 ###########################################################################
 

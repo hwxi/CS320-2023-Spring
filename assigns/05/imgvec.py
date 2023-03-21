@@ -33,9 +33,8 @@ def image_make_pylist(hh, ww, pixlst):
 ####################################################
 
 def image_foreach(image, work_func):
-    for pix in image.pixlst:
-        work_func(pix)
-    return None
+    for pix in image.pixlst: work_func(pix)
+    return None # end-of(image_foreach(image, work_func))
 
 ####################################################
 
@@ -84,9 +83,12 @@ def image_make_i2map(image, i2fopr_func):
     ww = image.width
     hh = image.height
     return image_make_pylist\
-        (hh, ww, \
-         image_imap_pylist\
-         (image, lambda ij, pix: i2fopr_func(ij//ww, ij % ww, pix)))
+        (hh, ww, image_i2map_pylist(image, i2fopr_func))
+def image_i2map_pylist(image, i2fopr_func):
+    ww = image.width
+    hh = image.height
+    return image_imap_pylist\
+         (image, lambda ij, pix: i2fopr_func(ij//ww, ij % ww, pix))
 
 ####################################################
 
@@ -106,20 +108,71 @@ def image_round_and_clip(image):
 ####################################################
 
 def image_kernel_correlate(image, kernel, bbehav):
+    hsz = kernel.size // 2
+    if bbehav == 'zero':
+        fimage = lambda x, y: func_image_pixel_zero(image, x, y)
+        return image_make_i2map\
+            (image, \
+             lambda x, y, _: kervec.kernel_fimage_apply(kernel, fimage(x-hsz, y-hsz)))
+    if bbehav == 'wrap':
+        fimage = lambda x, y: func_image_pixel_wrap(image, x, y)
+        return image_make_i2map\
+            (image, \
+             lambda x, y, _: kervec.kernel_fimage_apply(kernel, fimage(x-hsz, y-hsz)))
     if bbehav == 'extend':
         fimage = lambda x, y: func_image_pixel_extend(image, x, y)
         return image_make_i2map\
             (image, \
-             lambda x, y, _: kervec.kernel_fimage_apply(kernel, fimage(x, y)))
+             lambda x, y, _: kervec.kernel_fimage_apply(kernel, fimage(x-hsz, y-hsz)))
     raise NotImplementedError
+
+####################################################
+
+def func_image_pixel_zero(image, x, y):
+    """
+    Given an image and integers x and y, returns a function that takes
+    two integers i and j and returns the value of the pixel at position
+    (x+i, y+j). Handles boundary cases according to boundary behavior 'zero'.
+    """
+    ww = image.width
+    hh = image.height
+    
+    def func(i, j):
+        xi = x + i
+        yj = y + j
+        if xi < 0 or xi >= hh:
+            return 0
+        if yj < 0 or yj >= ww:
+            return 0
+        return image_get_pixel(image, xi, yj)
+
+    return lambda i, j: func(i, j)
+
+####################################################
+
+def func_image_pixel_wrap(image, x, y):
+    """
+    Given an image and integers x and y, returns a function that takes
+    two integers i and j and returns the value of the pixel at position
+    (x+i, y+j). Handles boundary cases according to boundary behavior 'wrap'.
+    """
+    ww = image.width
+    hh = image.height
+    
+    def func(i, j):
+        xi = (x+i) % hh
+        yi = (y+j) % ww
+        return image_get_pixel(image, xi, yj)
+
+    return lambda i, j: func(i, j)
 
 ####################################################
 
 def func_image_pixel_extend(image, x, y):
     """
     Given an image and integers x and y, returns a function that takes
-    two integers i and j and returns the value of the pixel at
-    position (x+i, y+j). Handles boundary cases according to boundary behavior 'extend'.
+    two integers i and j and returns the value of the pixel at position
+    (x+i, y+j). Handles boundary cases according to boundary behavior 'extend'.
     """
     ww = image.width
     hh = image.height
@@ -138,6 +191,28 @@ def func_image_pixel_extend(image, x, y):
         return image_get_pixel(image, xi, yj)
 
     return lambda i, j: func(i, j)
+
+####################################################
+
+def image_trans_90l(image):
+    ww = image.width
+    hh = image.height
+    pixlst = image.pixlst
+    pixres = []
+    for j in range(ww):
+        for i in range(hh):
+            pixres.append(pixlst[i*ww+ww-1-j])
+    return image_make_pylist(ww, hh, pixres)
+
+def image_trans_90r(image):
+    ww = image.width
+    hh = image.height
+    pixlst = image.pixlst
+    pixres = []
+    for j in range(ww):
+        for i in range(hh):
+            pixres.append(pixlst[(hh-1-i)*ww+j])
+    return image_make_pylist(ww, hh, pixres)
 
 ####################################################
 
