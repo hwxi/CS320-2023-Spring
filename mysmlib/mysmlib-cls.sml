@@ -739,8 +739,10 @@ fun
 helper(i): int strcon =
 if
 (i >= n)
-then strcon_nil
-else strcon_cons(i, fn () => helper(i+1)) in helper(0)
+then
+strcon_nil(*void*)
+else
+strcon_cons(i, fn () => helper(i+1)) in helper(0)
 end
 
 (* ****** ****** *)
