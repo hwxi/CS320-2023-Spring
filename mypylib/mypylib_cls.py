@@ -338,6 +338,28 @@ def foreach_to_iforeach(foreach):
 
 ###########################################################################
 
+def foreach_to_iforall(foreach):
+    class FalseExn(Exception):
+        def __init_(self):
+            return None
+    def iforall(xs, itest_func):
+        i0 = 0
+        def work_func(x0):
+            nonlocal i0
+            if itest_func(i0, x0):
+                i0 = i0 + 1
+                return None
+            else:
+                raise FalseExn
+        try:
+            foreach(xs, work_func)
+            return True
+        except FalseExn:
+            return False
+    return iforall # foreach-function is turned into forall-function
+
+###########################################################################
+
 def foreach_to_ifoldleft(foreach):
     def ifoldleft(xs, r0, ifopr_func):
         i0 = 0
@@ -485,6 +507,94 @@ def iforeach_to_ifilter_fnlist(iforeach):
     return \
         lambda xs, itest_func: \
         fnlist_make_pylist(iforeach_to_ifilter_pylist(iforeach)(xs, itest_func))
+
+###########################################################################
+#
+# HX-2023-03-21: Lazy-evaluation and streams
+#
+###########################################################################
+
+class strcon:
+    ctag = -1
+    def get_ctag(self):
+        return self.ctag
+# end-of-class(strcon)
+
+class strcon_nil(strcon):
+    def __init__(self):
+        self.ctag = 0
+        return None
+# end-of-class(strcon_nil)
+
+class strcon_cons(strcon):
+    def __init__(self, cons1, cons2):
+        self.ctag = 1
+        self.cons1 = cons1
+        self.cons2 = cons2
+        return None
+    def get_cons1(self):
+        return self.cons1
+    def get_cons2(self):
+        return self.cons2
+# end-of-class(strcon_cons)
+
+###########################################################################
+
+def stream_foreach(fxs, work):
+    while(True):
+        cxs = fxs()
+        if (cxs.ctag == 0):
+            break
+        else:
+            work(cxs.cons1)
+            fxs = cxs.cons2
+        # end-of-(if(cxs.ctag==0)-then-else)
+    return None # end-of-(stream_foreach)
+
+def stream_forall(fxs, test):
+    foreach_to_forall(stream_foreach)(fxs, test)
+def stream_iforall(fxs, itest):
+    foreach_to_iforall(stream_foreach)(fxs, itest)
+
+###########################################################################
+
+def fnlist_streamize(xs):
+    def helper(xs):
+        if xs.ctag == 0:
+            return strcon_nil()
+        else:
+            return \
+                strcon_cons(xs.cons1, lambda: helper(xs.cons2))
+        # end-of-(if(xs.ctag==0)-then-else)
+    return lambda: helper(xs)
+
+###########################################################################
+
+def stream_tabulate(n0, fopr):
+    def helper(i0):
+        if i0 >= n0:
+            return strcon_nil()
+        else:
+            return strcon_cons(fopr(i0), lambda: helper(i0+1))
+        # end-of-(if(i0 >= n0)-then-else)
+    return lambda: helper(0)
+
+def pylist_streamize(xs):
+    return stream_tabulate(len(xs), lambda i0: xs[i0])
+def pytuple_streamize(xs):
+    return stream_tabulate(len(xs), lambda i0: xs[i0])
+
+###########################################################################
+
+def stream_make_map(fxs, fopr):
+    def helper(fxs):
+        cxs = fxs()
+        if cxs.ctag == 0:
+            return strcon_nil()
+        else:
+            return strcon_cons(fopr(cxs.cons1), lambda: helper(cxs.cons2))
+        # end-of-(if(cxs.ctag==0)-then-else)
+    return lambda: helper(fxs)
 
 ###########################################################################
 
