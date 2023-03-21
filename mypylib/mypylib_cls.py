@@ -572,7 +572,7 @@ def fnlist_streamize(xs):
 
 def stream_tabulate(n0, fopr):
     def helper(i0):
-        if i0 >= n0:
+        if n0 >= 0 and i0 >= n0:
             return strcon_nil()
         else:
             return strcon_cons(fopr(i0), lambda: helper(i0+1))
