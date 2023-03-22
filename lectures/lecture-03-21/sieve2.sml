@@ -2,6 +2,10 @@
 use "./../../mysmlib/mysmlib-cls.sml";
 (* ****** ****** *)
 
+val int2str = Int.toString
+
+(* ****** ****** *)
+
 fun
 sieve
 (fxs: int stream): int stream = fn() =>
@@ -30,4 +34,10 @@ val thePrimes = sieve(stream_from(2))
 
 (* ****** ****** *)
 
-(* end of [CS320-2023-Spring-lectures-sieve.sml] *)
+val _ = stream_iforall
+( thePrimes
+, fn(i, p) => i < 10 andalso (print("prime("^int2str(i)^") = "^int2str(p)^"\n"); true))
+
+(* ****** ****** *)
+
+(* end of [CS320-2023-Spring-lectures-sieve2.sml] *)

@@ -796,13 +796,70 @@ end (* end-of-[stream_tabulate(n0, fopr)] *)
 (* ****** ****** *)
 
 fun
-stream_foreach(fxs, work) =
+stream_forall
+(fxs, test) =
+let
+fun
+auxmain(fxs): bool =
+(
+case fxs() of
+  strcon_nil => true
+| strcon_cons(x1, fxs) =>
+  (test(x1) andalso auxmain(fxs))
+)
+in
+  auxmain(fxs)
+end (* end-of-[stream_forall(fxs, test)] *)
+
+fun
+stream_iforall
+(fxs, itest) =
+let
+fun
+auxmain(i0, fxs): bool =
+(
+case fxs() of
+  strcon_nil => true
+| strcon_cons(x1, fxs) =>
+  (itest(i0, x1) andalso auxmain(i0+1, fxs))
+)
+in
+  auxmain(0, fxs)
+end (* end-of-[stream_iforall(fxs, itest)] *)
+
+(* ****** ****** *)
+
+fun
+stream_foreach
+(fxs, work) =
+let
+fun
+auxmain(fxs): unit =
 (
 case fxs() of
   strcon_nil => ()
 | strcon_cons(x1, fxs) =>
-  (work(x1); stream_foreach(fxs, work))
-) (* end-of-[stream_foreach(fxs, work)] *)
+  (work(x1); auxmain(fxs))
+)
+in
+  auxmain(fxs)
+end (* end-of-[stream_foreach(fxs, work)] *)
+
+fun
+stream_iforeach
+(fxs, iwork) =
+let
+fun
+auxmain(i0, fxs): unit =
+(
+case fxs() of
+  strcon_nil => ()
+| strcon_cons(x1, fxs) =>
+  (iwork(i0, x1); auxmain(i0+1, fxs))
+)
+in
+  auxmain(0, fxs)
+end (* end-of-[stream_iforeach(fxs, iwork)] *)
 
 (* ****** ****** *)
 
