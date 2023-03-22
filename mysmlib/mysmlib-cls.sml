@@ -760,13 +760,47 @@ case xs of
 (* ****** ****** *)
 
 fun
+stream_tabulate
+( n0: int
+, fopr: int -> 'a): 'a stream =
+let
+fun
+fmain1
+(i0: int): 'a stream = fn() =>
+strcon_cons(fopr(i0), fmain1(i0+1))
+fun
+fmain2
+(i0: int): 'a stream = fn() =>
+if
+i0 >= n0
+then strcon_nil else
+strcon_cons(fopr(i0), fmain2(i0+1))
+in
+if n0 < 0 then fmain1(0) else fmain2(0)
+end (* end-of-[stream_tabulate(n0, fopr)] *)
+
+(* ****** ****** *)
+
+fun
+stream_foreach(fxs, work) =
+(
+case fxs() of
+  strcon_nil => ()
+| strcon_cons(x1, fxs) =>
+  (work(x1); stream_foreach(fxs, work))
+) (* end-of-[stream_foreach(fxs, work)] *)
+
+(* ****** ****** *)
+
+fun
 stream_make_map(fxs, fopr) = fn () =>
 (
 case fxs() of
-  strcon_nil =>
-  strcon_nil
-| strcon_cons(x1, fxs) =>
-  strcon_cons(fopr(x1), stream_make_map(fxs, fopr))
+strcon_nil =>
+strcon_nil
+|
+strcon_cons(x1, fxs) =>
+strcon_cons(fopr(x1), stream_make_map(fxs, fopr))
 )
 
 (* ****** ****** *)
@@ -781,11 +815,10 @@ case fxs() of
   strcon_nil
 | strcon_cons(x1, fxs) =>
   if
-  test(x1)
-  then
-  strcon_cons
-  (x1, stream_make_filter(fxs, test))
-  else stream_make_filter(fxs, test)()
+  not(test(x1))
+  then stream_make_filter(fxs, test)()
+  else
+  strcon_cons(x1, stream_make_filter(fxs, test))
 )
 
 (* ****** ****** *)
