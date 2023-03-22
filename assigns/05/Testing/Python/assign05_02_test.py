@@ -27,6 +27,8 @@ words = set(fnlist_pylistize(words))
 assert "abcy" in words
 assert "abcz" in words
 assert not "abcd" in words
+assert not "acbd" in words
+assert not "dcba" in words
 ######################################################
 print("Assign05-02-test passed!")
 ######################################################

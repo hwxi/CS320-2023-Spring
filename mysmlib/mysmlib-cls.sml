@@ -733,6 +733,19 @@ type 'a stream = (unit -> 'a strcon)
 (* ****** ****** *)
 
 fun
+stream_nil
+((*void*)) =
+  fn () => strcon_nil(*void*)
+fun
+stream_cons
+( x1: 'a
+, fxs
+: 'a stream) =
+   fn () => strcon_cons(x1, fxs)
+
+(* ****** ****** *)
+
+fun
 int1_streamize(n) = fn () =>
 let
 fun
@@ -742,7 +755,8 @@ if
 then
 strcon_nil(*void*)
 else
-strcon_cons(i, fn () => helper(i+1)) in helper(0)
+strcon_cons
+(i, fn () => helper(i+1)) in helper(0)
 end
 
 (* ****** ****** *)
@@ -789,6 +803,31 @@ case fxs() of
 | strcon_cons(x1, fxs) =>
   (work(x1); stream_foreach(fxs, work))
 ) (* end-of-[stream_foreach(fxs, work)] *)
+
+(* ****** ****** *)
+
+fun
+stream_append
+( fxs: 'a stream
+, fys: 'a stream) = fn() =>
+(
+case fxs() of
+strcon_nil => fys()
+|
+strcon_cons(x1, fxs) =>
+strcon_cons(x1, stream_append(fxs, fys)))
+
+(* ****** ****** *)
+
+fun
+stream_concat
+( fxss: 'a stream stream) = fn() =>
+(
+case fxss() of
+strcon_nil => strcon_nil
+|
+strcon_cons(fxs1, fxss) =>
+stream_append(fxs1, stream_concat(fxss))())
 
 (* ****** ****** *)
 
