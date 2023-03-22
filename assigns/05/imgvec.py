@@ -113,17 +113,17 @@ def image_kernel_correlate(image, kernel, bbehav):
         fimage = lambda x, y: func_image_pixel_zero(image, x, y)
         return image_make_i2map\
             (image, \
-             lambda x, y, _: kervec.kernel_fimage_apply(kernel, fimage(x-hsz, y-hsz)))
+             lambda x, y, _: kervec.kernel_fimage_apply(kernel, fimage(x, y)))
     if bbehav == 'wrap':
         fimage = lambda x, y: func_image_pixel_wrap(image, x, y)
         return image_make_i2map\
             (image, \
-             lambda x, y, _: kervec.kernel_fimage_apply(kernel, fimage(x-hsz, y-hsz)))
+             lambda x, y, _: kervec.kernel_fimage_apply(kernel, fimage(x, y)))
     if bbehav == 'extend':
         fimage = lambda x, y: func_image_pixel_extend(image, x, y)
         return image_make_i2map\
             (image, \
-             lambda x, y, _: kervec.kernel_fimage_apply(kernel, fimage(x-hsz, y-hsz)))
+             lambda x, y, _: kervec.kernel_fimage_apply(kernel, fimage(x, y)))
     raise NotImplementedError
 
 ####################################################
@@ -194,7 +194,7 @@ def func_image_pixel_extend(image, x, y):
 
 ####################################################
 
-def image_trans_90l(image):
+def image_trans_090l(image):
     ww = image.width
     hh = image.height
     pixlst = image.pixlst
@@ -204,7 +204,7 @@ def image_trans_90l(image):
             pixres.append(pixlst[i*ww+ww-1-j])
     return image_make_pylist(ww, hh, pixres)
 
-def image_trans_90r(image):
+def image_trans_090r(image):
     ww = image.width
     hh = image.height
     pixlst = image.pixlst
