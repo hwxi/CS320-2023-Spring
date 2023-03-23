@@ -571,14 +571,24 @@ def fnlist_streamize(xs):
 ###########################################################################
 
 def stream_tabulate(n0, fopr):
-    def helper(i0):
-        if n0 >= 0 and i0 >= n0:
+    def helper1(i0):
+        return strcon_cons(fopr(i0), lambda: helper1(i0+1))
+    def helper2(i0):
+        if i0 >= n0:
             return strcon_nil()
         else:
-            return strcon_cons(fopr(i0), lambda: helper(i0+1))
+            return strcon_cons(fopr(i0), lambda: helper2(i0+1))
         # end-of-(if(i0 >= n0)-then-else)
-    return lambda: helper(0)
+    if n0 < 0:
+        return lambda: helper1(0)
+    else:
+        return lambda: helper2(0)
+    # end-of-(if(n0 < 0)-then-else)
+    
+###########################################################################
 
+def string_streamize(xs):
+    return stream_tabulate(len(xs), lambda i0: xs[i0])
 def pylist_streamize(xs):
     return stream_tabulate(len(xs), lambda i0: xs[i0])
 def pytuple_streamize(xs):
