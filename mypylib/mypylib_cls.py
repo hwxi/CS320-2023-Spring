@@ -167,7 +167,7 @@ def pylist_make_map(xs, fopr_func):
 def pylist_map_pylist(xs, fopr_func):
     return foreach_to_map_pylist(pylist_foreach)(xs, fopr_func)
 
-def pylist_filter(xs, test_func):
+def pylist_make_filter(xs, test_func):
     return foreach_to_filter_pylist(pylist_foreach)(xs, test_func)
 def pylist_filter_pylist(xs, test_func):
     return foreach_to_filter_pylist(pylist_foreach)(xs, test_func)
