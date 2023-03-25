@@ -28,9 +28,9 @@ contain no queen pieces.
 ######
 This function [solve_N_queen_puzzle] should return
 a stream of ALL the boards of size N that contain N
-queen pieces (one one each row and each column) such
-that no queen piece on the board can catch any other
-queen pieces on the same board.
+queen pieces (one on each row and on each column) such
+that no queen piece on the board can catch any other ones
+on the same board.
 """
     raise NotImplementedError
 ####################################################
