@@ -26,9 +26,10 @@ for a doublet or not:
 http://ats-lang.github.io/EXAMPLE/BUCS320/Doublets/Doublets.html
 ######
 Given a word, the function [doublet_stream_from] returns a stream
-consisting *all* the tuples such that the first element of the tuple
-is the given word and every two consecutive words in the tuple form
-a 1-step doublet.
+enumerating *all* the tuples such that the first element of the tuple
+is the given word and every two consecutive words in the tuple form a
+1-step doublet. The enumeration of tuples should be done so that shorter
+tuples are always enumerated ahead of longer ones.
 ######
 """
     raise NotImplementedError
