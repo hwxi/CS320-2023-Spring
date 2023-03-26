@@ -1,5 +1,6 @@
 datatype
-('a, 'b) table = table of ('a * 'b) list
+('a, 'b) table =
+table of ('a * 'b) list
 
 (*
 fun compute1(x: 'a): 'b = ...
