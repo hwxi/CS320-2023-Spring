@@ -45,6 +45,11 @@ string_iforeach("123456789", lambda i, x: print("[",i,"]:", x))
 
 ########################################################################
 
+def pylist_forall(xs, test):
+    return foreach_to_forall(pylist_foreach)(xs, test)
+
+########################################################################
+
 def string_length(xs):
     return string_foldleft(xs, 0, lambda r0, x0: 1 + r0)
 
