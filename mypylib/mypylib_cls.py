@@ -552,13 +552,13 @@ def stream_foreach(fxs, work):
     return None # end-of-(stream_foreach)
 
 def stream_forall(fxs, test):
-    foreach_to_forall(stream_foreach)(fxs, test)
+    return foreach_to_forall(stream_foreach)(fxs, test)
 
 def stream_iforall(fxs, itest):
-    foreach_to_iforall(stream_foreach)(fxs, itest)
+    return foreach_to_iforall(stream_foreach)(fxs, itest)
 
 def stream_iforeach(fxs, iwork):
-    foreach_to_iforeach(stream_foreach)(fxs, iwork)
+    return foreach_to_iforeach(stream_foreach)(fxs, iwork)
 
 ###########################################################################
 
