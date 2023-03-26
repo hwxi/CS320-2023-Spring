@@ -608,4 +608,21 @@ def stream_make_map(fxs, fopr):
 
 ###########################################################################
 
+def stream_make_filter(fxs, test):
+    def helper(fxs):
+        cxs = fxs()
+        if cxs.ctag == 0:
+            return strcon_nil()
+        else:
+            if not test(cxs.cons1):
+                return helper(cxs.cons2)
+            else:
+                return \
+                    strcon_cons(fopr(cxs.cons1), lambda: helper(cxs.cons2))
+            # end-of-(if(not(test(cxs.cons1)))-then-else)
+        # end-of-(if(cxs.ctag==0)-then-else)
+    return lambda: helper(fxs)
+
+###########################################################################
+
 ######################### end of [mypylib-cls.py] #########################
