@@ -553,8 +553,12 @@ def stream_foreach(fxs, work):
 
 def stream_forall(fxs, test):
     foreach_to_forall(stream_foreach)(fxs, test)
+
 def stream_iforall(fxs, itest):
     foreach_to_iforall(stream_foreach)(fxs, itest)
+
+def stream_iforeach(fxs, iwork):
+    foreach_to_iforeach(stream_foreach)(fxs, iwork)
 
 ###########################################################################
 
@@ -602,7 +606,8 @@ def stream_make_map(fxs, fopr):
         if cxs.ctag == 0:
             return strcon_nil()
         else:
-            return strcon_cons(fopr(cxs.cons1), lambda: helper(cxs.cons2))
+            return strcon_cons\
+                (fopr(cxs.cons1), lambda: helper(cxs.cons2))
         # end-of-(if(cxs.ctag==0)-then-else)
     return lambda: helper(fxs)
 
@@ -618,7 +623,7 @@ def stream_make_filter(fxs, test):
                 return helper(cxs.cons2)
             else:
                 return \
-                    strcon_cons(fopr(cxs.cons1), lambda: helper(cxs.cons2))
+                    strcon_cons(cxs.cons1, lambda: helper(cxs.cons2))
             # end-of-(if(not(test(cxs.cons1)))-then-else)
         # end-of-(if(cxs.ctag==0)-then-else)
     return lambda: helper(fxs)
