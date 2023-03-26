@@ -29,7 +29,19 @@ theNQueenSols_10 = solve_N_queen_puzzle(10)
 ######################################################
 theNQueenSols_16 = solve_N_queen_puzzle(16)
 ######################################################
+theNQueenSols_20 = solve_N_queen_puzzle(20)
+######################################################
 fxs = theNQueenSols_16
+cxs = fxs()
+fxs = cxs.cons2
+print(cxs.cons1)
+assert(board_safety_all(cxs.cons1))
+cxs = fxs()
+fxs = cxs.cons2
+print(cxs.cons1)
+assert(board_safety_all(cxs.cons1))
+######################################################
+fxs = theNQueenSols_20
 cxs = fxs()
 fxs = cxs.cons2
 print(cxs.cons1)
