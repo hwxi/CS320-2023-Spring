@@ -866,6 +866,17 @@ in
   auxmain(fxs)
 end (* end-of-[stream_foreach(fxs, work)] *)
 
+(* ****** ****** *)
+
+fun
+stream_get_at
+( fxs
+: 'a stream, i0: int): 'a =
+(
+foreach_to_get_at(stream_foreach)(fxs, i0))
+
+(* ****** ****** *)
+
 fun
 stream_iforeach
 (fxs, iwork) =

@@ -154,6 +154,9 @@ def fnlist_rpylistize(xs):
 
 def fnlist_make_pylist(xs): return pylist_fnlistize(xs)
 
+def fnlist_filter_pylist(xs, test_func):
+    return foreach_to_filter_pylist(fnlist_foreach)(xs, test_func)
+
 ###########################################################################
 
 def pylist_foreach(xs, work_func):
@@ -554,6 +557,21 @@ def stream_foreach(fxs, work):
             fxs = cxs.cons2
         # end-of-(if(cxs.ctag==0)-then-else)
     return None # end-of-(stream_foreach)
+
+def stream_get_at(fxs, i0):
+    while(True):
+        cxs = fxs()
+        if (cxs.ctag == 0):
+            raise IndexError
+        else:
+            if i0 <= 0:
+                return cxs.cons1
+            else:
+                i0 = i0 - 1
+                fxs = cxs.cons2
+    return None # This is deadcode
+
+###########################################################################
 
 def stream_forall(fxs, test):
     return foreach_to_forall(stream_foreach)(fxs, test)
