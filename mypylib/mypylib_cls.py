@@ -651,6 +651,10 @@ def stream_make_filter(fxs, test):
 
 ###########################################################################
 
+import queue
+
+###########################################################################
+
 def gtree_bfs(nxs, fchlds):
     def helper(qnxs):
         if qnxs.empty():
@@ -663,6 +667,24 @@ def gtree_bfs(nxs, fchlds):
             return strcon_cons(nx1, lambda: helper(qnxs))
         # end-of-(if(not nxs)-then-else)
     qnxs = queue.Queue()
+    for nx1 in nxs:
+        qnxs.put(nx1)
+    return lambda: helper(qnxs)
+
+###########################################################################
+
+def gtree_dfs(nxs, fchlds):
+    def helper(qnxs):
+        if qnxs.empty():
+            return strcon_nil()
+        else:
+            nx1 = qnxs.get()
+            # print("gtree_bfs: helper: nx1 = ", nx1)
+            for nx2 in reversed(fchlds(nx1)):
+                qnxs.put(nx2)
+            return strcon_cons(nx1, lambda: helper(qnxs))
+        # end-of-(if(not nxs)-then-else)
+    qnxs = queue.LifoQueue()
     for nx1 in nxs:
         qnxs.put(nx1)
     return lambda: helper(qnxs)
