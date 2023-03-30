@@ -665,7 +665,7 @@ def gtree_bfs(nxs, fchlds):
             for nx2 in fchlds(nx1):
                 qnxs.put(nx2)
             return strcon_cons(nx1, lambda: helper(qnxs))
-        # end-of-(if(not nxs)-then-else)
+        # end-of-(if(qnxs.empty())-then-else)
     qnxs = queue.Queue()
     for nx1 in nxs:
         qnxs.put(nx1)
@@ -679,15 +679,81 @@ def gtree_dfs(nxs, fchlds):
             return strcon_nil()
         else:
             nx1 = qnxs.get()
-            # print("gtree_bfs: helper: nx1 = ", nx1)
+            # print("gtree_dfs: helper: nx1 = ", nx1)
             for nx2 in reversed(fchlds(nx1)):
                 qnxs.put(nx2)
             return strcon_cons(nx1, lambda: helper(qnxs))
-        # end-of-(if(not nxs)-then-else)
+        # end-of-(if(qnxs.empty())-then-else)
     qnxs = queue.LifoQueue()
     for nx1 in nxs:
         qnxs.put(nx1)
     return lambda: helper(qnxs)
+
+###########################################################################
+
+def graph_bfs(nxs, fnexts):
+    visited = set()
+    def helper(qnxs):
+        if qnxs.empty():
+            return strcon_nil()
+        else:
+            nx1 = qnxs.get()
+            # print("gtree_bfs: helper: nx1 = ", nx1)
+            for nx2 in fnexts(nx1):
+                if not nx2 in visited:
+                    qnxs.put(nx2)
+                    visited.add(nx2)
+            return strcon_cons(nx1, lambda: helper(qnxs))
+        # end-of-(if(qnxs.empty())-then-else)
+    qnxs = queue.Queue()
+    for nx0 in nxs:
+        qnxs.put(nx0)
+        visited.add(nx1)
+    return lambda: helper(qnxs)
+
+###########################################################################
+
+def graph_dfs(nxs, fnexts):
+    visited = set()
+    def helper(qnxs):
+        if qnxs.empty():
+            return strcon_nil()
+        else:
+            nx1 = qnxs.get()
+            # print("gtree_dfs: helper: nx1 = ", nx1)
+            for nx2 in reversed(fnexts(nx1)):
+                if not nx2 in visited:
+                    qnxs.put(nx2)
+                    visited.add(nx2)
+            return strcon_cons(nx1, lambda: helper(qnxs))
+        # end-of-(if(qnxs.empty())-then-else)
+    qnxs = queue.LifoQueue()
+    for nx0 in nxs:
+        qnxs.put(nx0)
+        visited.add(nx1)
+    return lambda: helper(qnxs)
+
+###########################################################################
+
+def gpath_bfs(nxs, fnexts):
+    visited = set()
+    def helper(qpths):
+        if qpths.empty():
+            return strcon_nil()
+        else:
+            pth1 = qpths.get()
+            # print("gtree_bfs: helper: nx1 = ", nx1)
+            for nx2 in fnexts(pth1[-1]):
+                if not nx2 in visited:
+                    visited.add(nx2)
+                    qpths.put(pth1 + (nx2,))
+            return strcon_cons(pth1, lambda: helper(qpths))
+        # end-of-(if(qnxs.empty())-then-else)
+    qpths = queue.Queue()
+    for nx0 in nxs:
+        visited.add(nx0)
+        qpths.put(tuple([nx0]))
+    return lambda: helper(qpths)
 
 ###########################################################################
 
