@@ -4,12 +4,12 @@
 import sys
 ####################################################
 sys.path.append('../../../06')
-sys.path.append('../../../06/MySolution/Python')
+sys.path.append('../../../05/MySolution/Python')
 sys.path.append('./../../../../mypylib')
 ####################################################
 from dictwords import *
 from mypylib_cls import *
-from assign06_04 import *
+from assign05_02 import *
 ####################################################
 """
 HX-2023-03-24: 10 points
