@@ -733,6 +733,24 @@ type 'a stream = (unit -> 'a strcon)
 (* ****** ****** *)
 
 fun
+strcon_head
+(cxs: 'a strcon) =
+case cxs of
+strcon_nil => raise Empty
+|
+strcon_cons(cx1, fxs) => cx1
+
+fun
+strcon_tail
+(cxs: 'a strcon) =
+case cxs of
+strcon_nil => raise Empty
+|
+strcon_cons(cx1, fxs) => fxs
+
+(* ****** ****** *)
+
+fun
 stream_nil
 ((*void*)) =
   fn () => strcon_nil(*void*)
@@ -742,6 +760,17 @@ stream_cons
 , fxs
 : 'a stream) =
    fn () => strcon_cons(x1, fxs)
+
+(* ****** ****** *)
+
+fun
+stream_head
+( fxs
+: 'a stream) = strcon_head(fxs())
+fun
+stream_tail
+( fxs
+: 'a stream) = strcon_tail(fxs())
 
 (* ****** ****** *)
 
@@ -893,6 +922,10 @@ in
   auxmain(0, fxs)
 end (* end-of-[stream_iforeach(fxs, iwork)] *)
 
+(* ****** ****** *)
+val
+stream_length = fn(fxs) =>
+foreach_to_length(stream_foreach)(fxs)
 (* ****** ****** *)
 
 fun
