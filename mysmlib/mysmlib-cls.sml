@@ -985,4 +985,49 @@ case fxs() of
 
 (* ****** ****** *)
 
+fun
+stream_make_imap
+( fxs: 'a stream
+, ifopr
+: int * 'a -> 'b) = fn () =>
+let
+(* ****** ****** *)
+fun
+helper(fxs, i0: int) = fn() =>
+case fxs() of
+strcon_nil =>
+strcon_nil(*void*)
+|
+strcon_cons(x1, fxs) =>
+strcon_cons
+( ifopr(i0, x1)
+, helper(fxs, i0+1)) in helper(fxs, 0)
+(* ****** ****** *)
+end (* end-of-[stream_make_imap(fxs, ifopr)] *)
+
+(* ****** ****** *)
+
+fun
+stream_make_ifilter
+( fxs: 'a stream
+, itest: int * 'a -> bool): 'a stream = fn () =>
+let
+(* ****** ****** *)
+fun
+helper
+(fxs, i0: int) = fn() =>
+case fxs() of
+strcon_nil => strcon_nil
+|
+strcon_cons(x1, fxs) =>
+if
+not(itest(i0, x1))
+then helper(fxs, i0+1)()
+else
+strcon_cons(x1, helper(fxs, i0+1)) in helper(fxs, 0)()
+(* ****** ****** *)
+end (* end-of-[stream_make_ifilter(fxs, ifopr)] *)
+
+(* ****** ****** *)
+
 (* end of [BUCASCS320-2023-Spring-mysmlib-cls.sml] *)
