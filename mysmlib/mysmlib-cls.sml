@@ -70,9 +70,29 @@ end (* end of [char_of_digit] *)
 (* ****** ****** *)
 
 fun
-print_int(x: int) = print(Int.toString(x))
+print_int
+(x: int) = print(Int.toString(x))
 fun
-print_char(c: char) = print(String.str(c))
+print_char
+(c: char) = print( String.str(c) )
+
+(* ****** ****** *)
+fun
+print_bool
+(x: bool) = print(Bool.toString(x))
+(* ****** ****** *)
+
+fun
+print_string(cs: string) = print(cs)
+
+(* ****** ****** *)
+
+fun
+print_newline() = print("\n")
+fun
+println(cs) = (print(cs); print_newline())
+fun
+println_string(cs) = (print(cs); print_newline())
 
 (* ****** ****** *)
 

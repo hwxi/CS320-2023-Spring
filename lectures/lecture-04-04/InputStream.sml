@@ -18,8 +18,23 @@ end
 
 (* ****** ****** *)
 
-fun echo() =
-stream_foreach(stdin_input_lines(), fn(line) => print(line))
+(*
+fun
+echo(inputs: string stream): unit =
+(
+case inputs() of
+  strcon_nil => println("Game Over!")
+| strcon_cons(line, inputs) => (println(line); echo(inputs))
+)
+*)
+fun
+myecho() =
+let
+val inputs =
+stdin_input_lines()
+in
+(stream_foreach(inputs, fn(line) => print(line)); println("Game Over!"))
+end
 
 (* ****** ****** *)
 
