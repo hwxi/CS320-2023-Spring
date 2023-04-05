@@ -1009,7 +1009,7 @@ fun
 stream_make_imap
 ( fxs: 'a stream
 , ifopr
-: int * 'a -> 'b) = fn () =>
+: int * 'a -> 'b) =
 let
 (* ****** ****** *)
 fun
@@ -1030,7 +1030,7 @@ end (* end-of-[stream_make_imap(fxs, ifopr)] *)
 fun
 stream_make_ifilter
 ( fxs: 'a stream
-, itest: int * 'a -> bool): 'a stream = fn () =>
+, itest: int * 'a -> bool): 'a stream =
 let
 (* ****** ****** *)
 fun
@@ -1044,7 +1044,8 @@ if
 not(itest(i0, x1))
 then helper(fxs, i0+1)()
 else
-strcon_cons(x1, helper(fxs, i0+1)) in helper(fxs, 0)()
+strcon_cons
+  (x1, helper(fxs, i0+1)) in helper(fxs, 0)
 (* ****** ****** *)
 end (* end-of-[stream_make_ifilter(fxs, ifopr)] *)
 
