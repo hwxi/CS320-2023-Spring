@@ -23,4 +23,4 @@ stream_dupfind(fxs: int stream) = ...
 
 (* ****** ****** *)
 
-(* end of [CS320-2023-Spring-quizzes-quiz04-02-test.sml] *)
+(* end of [CS320-2023-Spring-quizzes-quiz04-02.sml] *)
