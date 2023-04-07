@@ -756,5 +756,72 @@ def gpath_bfs(nxs, fnexts):
     return lambda: helper(qpths)
 
 ###########################################################################
+#
+# HX-2023-04-06:
+#
+# Generators are continuation-based linear streams in Python
+# Note that the streams translated from SML into Python are thunk-based
+# (instead of continuation-based). Generators play a very significant role
+# in Python's support for ease of programming. I hereby give some simple
+# combinators for processing generators.
+#
+###########################################################################
+
+def generator_tabulate(n0, fopr):
+    if n0 >= 0:
+        i0 = 0
+        while i0 < n0:
+            yield fopr(i0)
+    else:
+        i0 = 0
+        while True:
+            yield fopr(i0)
+            i0 = i0 + 1
+    return None # this line is deadcode
+
+###########################################################################
+
+def generator_make_map(xs, fopr):
+    for x1 in xs:
+        yield fopr(x1)
+    return None # deadcode
+
+def generator_make_filter(xs, test):
+    for x1 in xs:
+        if test(x1):
+            yield x1
+    return None # deadcode
+
+def generator_make_zip2(xs, ys):
+    while True:
+        x1 = next(xs)
+        y1 = next(ys)
+        yield (x1, y1)
+    return None # deadcode
+
+###########################################################################
+
+def generator_of_stream(fxs):
+    while True:
+        cxs = fxs()
+        if cxs.ctag == 0:
+            break
+        else:
+            fxs = cxs.cons2
+            yield cxs.cons1
+    raise StopIteration
+
+###########################################################################
+
+def stream_of_generator(xs):
+    def strcon():
+        try:
+            x1 = next(xs)
+            return strcon_cons(x1, strcon)
+        except StopIteration:
+            return strcon_nil()
+    return lambda: strcon()
+    
+################################################
 
 ######################### end of [mypylib-cls.py] #########################
