@@ -22,6 +22,9 @@ def word_neighbors_legal(word):
     return fnlist_filter_pylist\
         (word_neighbors(word), word_is_legal)
 ######################################################
+test0 = \
+    doublet_bfs_test('never', 'never')
+print("doublet_bfs_test('never', 'never') = ", test0)
 test1 = \
     doublet_bfs_test('never', 'again')
 print("doublet_bfs_test('never', 'again') = ", test1)
@@ -34,9 +37,15 @@ test3 = \
     doublet_bfs_test('hello', 'world')
 print("doublet_bfs_test('hello', 'world') = ", test3)
 assert test3
-test4 = doublet_bfs_test('hello', 'xerox')
+######################################################
+test4 = \
+    doublet_bfs_test('hello', 'xerox')
 print("doublet_bfs_test('hello', 'xerox') = ", test4)
 assert not test4
+test5 = \
+    doublet_bfs_test('xerox', 'hello')
+print("doublet_bfs_test('xerox', 'hello') = ", test5)
+assert not test5
 ######################################################
 print("Assign08-03-test passed!")
 ######################################################
