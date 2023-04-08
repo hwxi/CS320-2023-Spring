@@ -30,6 +30,6 @@ def stream_merge2(fxs1, fxs2, lte3):
 def theNatPairs_cubesum():
     def helper(i0):
         return strcon_cons((i0, i0), stream_merge2(stream_tabulate(-1, lambda j0: (i0, i0+1+j0)), lambda: helper(i0+1), cube_sum_lte))
-    return lambda: helper(0)
+    return generator_of_stream(lambda: helper(0))
 
 ####################################################
