@@ -1,0 +1,25 @@
+#####################################################################
+
+During this lecture, we compare two kinds of streams: thunk-based and
+continuation-based (generators).
+
+#####################################################################
+
+Here is post @1113 on Piazza:
+
+Another kind of lazy evaluation
+
+Hanging on there.
+
+Generators in Python are a very cool and powerful programming feature:
+
+https://py.mit.edu/spring23/readings/generators
+
+This feature bears a lot of resemblance to the kind of lazy-evaluation
+we have been covering. This feature is continuation-based, though. It
+happens that the last major concept we introduce and study in this
+class is CONTINUATION. So I will go over generators in Python
+tomorrow, preparing for the introduction of continuation. Then we are
+done!
+
+#####################################################################
