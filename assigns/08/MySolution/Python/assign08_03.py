@@ -25,7 +25,7 @@ The following implementation is stream-based:
 #     return lambda: helper(qnxs)
 Please give a generator-based implementation of graph_bfs!!!
 """
-def generator_graph_bfs(nxs, fnexts)
+def generator_graph_bfs(nxs, fnexts):
     """
     This function does the same as graph_bfs.
     """
