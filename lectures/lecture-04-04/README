@@ -1,0 +1,11 @@
+#####################################################################
+
+During this lecture, we cover two items:
+
+Item 1: stream-based I/O (mostly about input)
+Item 2: Merging two streams: stream_merge2(fxs1, fxs2, lte2)
+
+Also, a style of "gradual programming" is shown and the emphasis
+on type-checking is repeated.
+
+#####################################################################
