@@ -3,7 +3,7 @@
 ## Assign05: the 6th assignment
 
 - Out: Friday, the 15th of March at 12:00am
-- Due: Thursday, the 24th of Friday at 11:59pm
+- Due: Thursday, the 24th of March at 11:59pm
 
 ### MySolution/SML/assign05-01.sml
 
