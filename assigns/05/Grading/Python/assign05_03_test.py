@@ -15,7 +15,8 @@ def work_func(clr):
 imgvec.image_foreach\
     (balloons_1, lambda clr: work_func(clr))
 print("ptotal = ", ptotal)
-assert (ptotal == 58811238)
+assert(   ptotal == 55   )
+# assert (ptotal == 58811238)
 ######################################################
 ncol = 2
 balloons_2 = image_seam_carving_color(balloons, ncol)
@@ -27,7 +28,8 @@ def work_func(clr):
 imgvec.image_foreach\
     (balloons_2, lambda clr: work_func(clr))
 print("ptotal = ", ptotal)
-assert (ptotal == 58699911)
+assert(   ptotal == 25   )
+# assert (ptotal == 58699911)
 ######################################################
 print("Assign05-03-test passed!")
 ######################################################

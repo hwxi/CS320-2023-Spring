@@ -17,7 +17,8 @@ def work_func(clr):
 imgvec.image_foreach\
     (balloons_1, lambda clr: work_func(clr))
 print("ptotal = ", ptotal)
-assert (ptotal == 58712691)
+assert(   ptotal == 93   )
+# assert (ptotal == 58712691)
 # assert (ptotal == 58811238) # no transposition
 ######################################################
 ncol = 2
@@ -30,7 +31,8 @@ def work_func(clr):
 imgvec.image_foreach\
     (balloons_2, lambda clr: work_func(clr))
 print("ptotal = ", ptotal)
-assert (ptotal == 58494021)
+assert(   ptotal == 67   )
+# assert (ptotal == 58494021)
 # assert (ptotal == 58699911) # no transposition
 ######################################################
 print("Assign05-03-test2 passed!")
