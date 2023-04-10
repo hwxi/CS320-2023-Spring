@@ -776,6 +776,7 @@ def generator_tabulate(n0, fopr):
         i0 = 0
         while i0 < n0:
             yield fopr(i0)
+            i0 = i0 + 1
     else:
         i0 = 0
         while True:
