@@ -77,6 +77,13 @@ def stream_of_generator(xs):
     
 ################################################
 
+# def generator_sieve(xs):
+#     while True:
+#         x1 = next(xs)
+#         yield x1
+#         xs = generator_make_filter(xs, lambda x2: (x2 % x1 > 0))
+#     return None # This line is deadcode
+
 def generator_sieve(xs):
     def test(x1):
         return lambda x2: (x2 % x1 > 0)

@@ -1,6 +1,5 @@
 ################################################
 import sys
-sys.setrecursionlimit(50000)
 ################################################
 def my_int_from1(start):
     while True:
