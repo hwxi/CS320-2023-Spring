@@ -1,5 +1,9 @@
 (* ****** ****** *)
 
+use "./../../MySolution/SML/generator.sml";
+
+(* ****** ****** *)
+
 (*
 There is an implementation of infinite generators
 in [generator.sml]. Please study the implementation.
