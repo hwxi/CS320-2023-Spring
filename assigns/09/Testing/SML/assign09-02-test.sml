@@ -15,14 +15,24 @@ case generator_next(fgen) of
 fun
 fgenerator_foreach
 (fgen: 'a fgenerator, work: 'a -> unit) =
-work(fgenerator_next(fgen)) handle StopIteration => ()
+let
+fun
+loop(): unit =
+let
+val x1 =
+fgenerator_next(fgen) in work(x1); loop()
+end
+in
+  loop() handle StopIteration(*void*) => ()
+end
 
 (* ****** ****** *)
 
 val ans1 =
 foreach_to_forall
 (fgenerator_foreach)
-(fgenerator_make_stream(stream_tabulate(10, fn i => i+1)), fn i => i > 0)
+(fgenerator_make_stream
+ (stream_tabulate(10, fn i => i+1)), fn i => i > 0)
 val ((*void*)) = assert320(ans1)
 
 (* ****** ****** *)
@@ -30,7 +40,8 @@ val ((*void*)) = assert320(ans1)
 val ans2 =
 foreach_to_forall
 (fgenerator_foreach)
-(fgenerator_make_stream(stream_tabulate(10, fn i => i+1)), fn i => i mod 5 > 0)
+(fgenerator_make_stream
+ (stream_tabulate(1000000, fn i => i+1)), fn i => i mod 5 > 0)
 val ((*void*)) = assert320(not(ans2))
 
 (* ****** ****** *)
