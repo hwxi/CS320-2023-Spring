@@ -23,6 +23,15 @@ val ans1 =
 foreach_to_forall
 (fgenerator_foreach)
 (fgenerator_make_stream(stream_tabulate(10, fn i => i+1)), fn i => i > 0)
+val ((*void*)) = assert320(ans1)
+
+(* ****** ****** *)
+
+val ans2 =
+foreach_to_forall
+(fgenerator_foreach)
+(fgenerator_make_stream(stream_tabulate(10, fn i => i+1)), fn i => i mod 5 > 0)
+val ((*void*)) = assert320(not(ans2))
 
 (* ****** ****** *)
 
