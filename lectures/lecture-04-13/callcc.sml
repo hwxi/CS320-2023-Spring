@@ -36,8 +36,9 @@ fun
 kfact
 (n: int, k0: int cont): int =
 if n <= 0
-then throw k0 1
-else kfact(n-1, compose_func_cont(fn res => n * res, k0))
+then throw k0 1 else
+kfact
+(n-1, compose_func_cont(fn res => n * res, k0))
 
 (* ****** ****** *)
 
