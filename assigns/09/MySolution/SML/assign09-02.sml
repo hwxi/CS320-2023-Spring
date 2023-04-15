@@ -1,7 +1,7 @@
 (* ****** ****** *)
-
 use "./../../MySolution/SML/generator.sml";
-
+(* ****** ****** *)
+use "./../../../../mysmlib/mysmlib-cls.sml";
 (* ****** ****** *)
 
 (*
@@ -29,7 +29,7 @@ test your understanding of continuations.
 *)
 //
 fun
-fgenerator_make_stream(xs: 'a stream): 'a fgenerator = ...
+fgenerator_make_stream(fxs: 'a stream): 'a fgenerator = ...
 //
 *)
 
