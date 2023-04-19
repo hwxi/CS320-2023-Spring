@@ -30,7 +30,7 @@ end
 
 fun
 generator_yield
-(cres, ret0, cret): unit =
+(cres, ret0, cret): 'a =
 callcc
 (fn cc =>
  (cret := cc; throw (!ret0) cres))
