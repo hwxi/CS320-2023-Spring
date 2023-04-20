@@ -30,10 +30,10 @@ end
 
 fun
 generator_yield
-(cres, ret0, cret): 'a =
+(cval, ret0, cret): 'a =
 callcc
 (fn cc =>
- (cret := cc; throw (!ret0) cres))
+ (cret := cc; throw (!ret0) cval))
 
 (* ****** ****** *)
 
@@ -42,9 +42,9 @@ generator_yield_from
 (gen1, ret0, cret): 'a =
 let
 val
-cres = generator_next(gen1)
+cval = generator_next(gen1)
 in(*in-of-let*)
-generator_yield(cres, ret0, cret);
+generator_yield(cval, ret0, cret);
 generator_yield_from(gen1, ret0, cret)
 end
 
@@ -62,12 +62,12 @@ let
   val ret0 = ref(Unsafe.cast(NONE))
   val cret = ref(Unsafe.cast(NONE))
 in
-  callcc
-  (fn cc0 =>
-   (callcc(fn cc1 =>
-    (cret := cc1; throw cc0 ())); gfun(ret0, cret); ()));
-  (ret0, cret)
-end
+callcc
+(fn cc0 =>
+ (callcc(fn cc1 =>
+  (cret := cc1; throw cc0 ())); gfun(ret0, cret); ()));
+(ret0, cret)
+end (* end-of-let: [generator_make_fun] *)
 
 (* ****** ****** *)
 
@@ -104,7 +104,8 @@ let
   val x1 =
   generator_next(gxs)
   val () =
-  if test(x1) then generator_yield(x1, ret0, cret) else ()
+  if test(x1)
+  then generator_yield(x1, ret0, cret) else ()
 in
   genfun( ret0, cret )
 end
@@ -133,7 +134,7 @@ generator_make_fun
 fn
 (ret0, cret) =>
 my_int_from2(start, ret0, cret)
-)
+) (* end of [my_int_from] *)
 
 (* ****** ****** *)
 

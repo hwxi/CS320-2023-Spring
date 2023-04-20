@@ -46,4 +46,8 @@ val ((*void*)) = assert320(not(ans2))
 
 (* ****** ****** *)
 
+val () = print( "Assign09-02-test passed!\n" )
+
+(* ****** ****** *)
+
 (* end of [CS320-2023-Spring-assigns-assign09-02.sml] *)
