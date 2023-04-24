@@ -55,7 +55,7 @@ val ( ) = assert320(list_merge2(xs1, xs2) = list_kmerge2(xs1, xs2, fn res => res
 
 (* ****** ****** *)
 
-val () = print( "Assign09-02-test passed!\n" )
+val () = print( "Assign09-01-test passed!\n" )
 
 (* ****** ****** *)
 
