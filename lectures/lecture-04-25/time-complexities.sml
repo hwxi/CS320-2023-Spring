@@ -57,4 +57,4 @@ Solution: T(n) = O(n*log(n)) // log-linear
 
 (* ****** ****** *)
 
-(* end of [time_complexities.sml] *)
+(* End of [CS320-2023-Spring-lectures-time-complexities.sml] *)
