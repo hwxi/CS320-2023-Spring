@@ -730,7 +730,7 @@ def graph_dfs(nxs, fnexts):
     qnxs = queue.LifoQueue()
     for nx0 in nxs:
         qnxs.put(nx0)
-        visited.add(nx1)
+        visited.add(nx0)
     return lambda: helper(qnxs)
 
 ###########################################################################
