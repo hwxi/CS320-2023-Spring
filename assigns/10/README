@@ -1,0 +1,25 @@
+########################################################################
+Assign10: 10 points
+This is the last one!!!
+It is due on the 3rd of May, 2023.
+########################################################################
+In the file MySolution/Python/assign10_01.py, you can find
+the following function 'cenergy' that computes the value of cumulative
+energy at the pixel-location (i0, j0):
+########################################################################
+def cenergy(i0, j0):
+    evalue = imgvec.image_get_pixel(energy, i0, j0)
+    if i0 <= 0:
+        return evalue
+    else:
+        if j0 <= 0:
+            return evalue + min(cenergy(i0-1, j0), cenergy(i0-1, j0+1))
+        elif j0 >= ww-1:
+            return evalue + min(cenergy(i0-1, j0-1), cenergy(i0-1, j0))
+        else:
+            return evalue + min(cenergy(i0-1, j0-1), cenergy(i0-1, j0), cenergy(i0-1, j0+1))
+########################################################################
+Please study the manual memoization example in lectures/lecture-04-27/pycache.py
+and then modify 'cenergy' so that your new version of 'cenergy' is efficient enough
+to pass the tests given in the directory Testing/Python/.
+########################################################################
