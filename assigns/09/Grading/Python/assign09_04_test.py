@@ -4,6 +4,7 @@ import sys
 sys.path.append('../../../07')
 ######################################################
 sys.path.append('./../../MySolution/Python')
+from assign09_03 import *
 from assign09_04 import *
 ######################################################
 myhint0 = \
@@ -61,6 +62,42 @@ myguess = \
     wordle_guess(myhints)
 print("myguess = ", myguess)
 assert myguess == "chrysanthemum"
+######################################################
+def wordle_rehint(myhint1, myword2):
+    myguess = []
+    for (k, c) in myhint1:
+        myguess.append(c)
+    myhint2 = \
+        wordle_hint(myword2, ''.join(myguess))
+    print ("myhint1 = ", myhint1)
+    print ("myhint2 = ", myhint2)
+    return (sorted(myhint1) == sorted(myhint2))
+######################################################
+def wordle_rehints(myhints, myword2):
+    for myhint1 in myhints:
+        if not wordle_rehint(myhint1, myword2):
+            return False
+    return True
+######################################################
+def wordle_tester(myword1):
+    def myhint_is_full(myhint):
+        for (k, c) in myhint:
+            if k != 1:
+                return False
+        return True
+    myhints = []
+    myword2 = len(myword1) * 'x'
+    myhints.append(wordle_hint(myword1, myword2))
+    while not myhint_is_full(myhints[-1]):
+        myword2 = wordle_guess(myhints)
+        if not wordle_rehints(myhints, myword2):
+            return False
+        myhints.append(wordle_hint(myword1, myword2))
+    return True
+######################################################
+assert wordle_tester("intriguing")
+assert wordle_tester("compensation")
+assert wordle_tester("chrysanthemum")
 ######################################################
 print("Assign09-04-test passed!")
 ######################################################
