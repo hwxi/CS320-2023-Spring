@@ -73,4 +73,4 @@ print("ys = ",end=''); mylist_print(ys); print();
 
 ####################################################
 
-###### end of [CS320-2023-Spring-assign02.sml] ######
+###### end of [CS320-2023-Spring-assign02.py] ######

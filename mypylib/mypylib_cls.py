@@ -742,7 +742,7 @@ def gpath_bfs(nxs, fnexts):
             return strcon_nil()
         else:
             pth1 = qpths.get()
-            # print("gtree_bfs: helper: nx1 = ", nx1)
+            # print("gpath_bfs: helper: nx1 = ", nx1)
             for nx2 in fnexts(pth1[-1]):
                 if not nx2 in visited:
                     visited.add(nx2)
